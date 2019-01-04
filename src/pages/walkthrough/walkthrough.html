@@ -1,0 +1,90 @@
+<ion-content class="walkthrough-view">
+  <div class="top-content row" [ngClass]="{'padding-top': (state === 'default')}">
+    <div class="col col-center"  ng-click="changeState('default')">
+      <button *ngIf="state !== 'default'" class="button button-clear button-back" (click)="changeState('default')">&lt; back</button>
+      <img class="logo" src="assets/imgs/Rover_Animate_300px.gif">
+      <h1>rover pay</h1>
+    </div>
+  </div>
+
+  <!--   !default state   -->
+  <div *ngIf="state === 'default'" class="bottom-content row">
+    <div class="col col-center col-10"></div>
+    <div class="col col-center col-33">
+      <a class="button button-block button-light" (click)="changeState('login')">
+        login
+      </a>
+    </div>
+    <div class="col col-center col-10"></div>
+    <div class="col col-center col-33">
+      <a class="button button-block button-positive" (click)="changeState('sign-up')">
+        sign up
+      </a>
+    </div>
+    <div class="col col-center col-10"></div>
+  </div>
+
+  <!--   !login state   -->
+  <div *ngIf="state === 'login'" class="bottom-content">
+    <div class="form-container col col-center col-80 col-offset-10">
+      <form name="login_form">
+        <div [formGroup]="loginForm" class="list">
+          <input type="text" formControlName="username" placeholder="Username (Phone or Email)" autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="off" required>
+          <input type="password" formControlName="password" placeholder="Password" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+        </div>
+        <div class="">
+          <button class="button button-positive button-block" 
+                  (click)="doLogin()" 
+                  [disabled]="(loginUsername.invalid || loginPassword.invalid)">
+            login
+          </button>
+        </div>
+      </form>
+
+      <div class="alternative-actions">
+        <a class="forgot-password button button-clear">
+          forgot password?
+        </a>
+        <div class="hr-outer"><span class="hr-inner">or</span></div>
+        <a class="button button-clear button-light facebook">
+          <ion-icon name="logo-facebook"></ion-icon>
+          log in with facebook
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!--   !signup state   -->
+  <div *ngIf="state === 'sign-up'" class="bottom-content">
+    <div class="form-container col col-center col-80 col-offset-10">
+      <form name="sign_up_form" class="" novalidate ng-cloak>
+        <div [formGroup]="signUpForm" class="list">
+          <input type="text" [ngClass]="((signUpFirstname.invalid && !signUpFirstname.pristine) ? 'invalid': '')" formControlName="firstName" placeholder="First Name" name="user_firstname" autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="off" required>
+          
+          <input type="text" [ngClass]="((signUpUsername.invalid && !signUpUsername.pristine) ? 'invalid': '')" formControlName="username" placeholder="Email" name="user_username" autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="off" required>
+          <p *ngIf="(signUpUsername.invalid && !signUpUsername.pristine)" class="input-error">Invalid email address</p>
+
+          <input type="password" [ngClass]="((signUpPassword.invalid && !signUpPassword.pristine) ? 'invalid': '')" formControlName="password" placeholder="Password" name="user_password" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+          <p *ngIf="(signUpPassword.invalid && !signUpPassword.pristine)" class="input-error">Password must be 8 characters</p>
+
+        </div>
+        <div class="">
+          <button type="submit" class="button button-positive button-block" 
+                  (click)="doSignup()" 
+                  [disabled]="(signUpFirstname.invalid || signUpUsername.invalid || signUpPassword.invalid)">
+            sign up
+          </button>
+        </div>
+      </form>
+
+      <div class="alternative-actions" ng-cloak>
+        <div class="hr-outer"><span class="hr-inner">or</span></div>
+        <a class="button button-clear button-light facebook">
+          <ion-icon name="logo-facebook"></ion-icon>
+          sign up with facebook
+        </a>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

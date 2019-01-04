@@ -1,0 +1,145 @@
+walkthrough {
+    ion-content {
+        background: transparent !important;
+    }
+
+    .walkthrough-view {
+
+        .ion-logo-facebook::before {
+            font-size: 18px;
+            display: inline-block;
+            padding: 0 0 1px 0;
+            vertical-align: inherit;
+            font-size: 24px;
+            line-height: 41px;
+            pointer-events: none;
+        }
+
+        .invalid {
+            border: 2px solid #fb9006;
+        }
+
+        .top-content {
+
+            padding-top: 0;
+            text-align: center;
+
+            &.padding-top {
+                padding-top: 20vh;
+            }
+
+            h1 {
+                color: color($colors, white, base);
+                margin-top: 0;
+                margin-bottom: 10px;
+            }
+            
+            img {
+                max-width: 125px;
+            }
+        }
+
+        .bottom-content {
+            padding-top: 5px;
+            margin-top: 0px;
+
+            .facebook {
+                margin-top: 20px;
+                border-bottom: none !important;
+                border-radius: 3px !important;
+                min-height: 40px !important;
+            }
+
+            .button {
+                border: none;
+                font-weight: normal;
+                font-size: 20px;
+            }
+
+            .alternative-actions {
+                text-align: center;
+            }
+
+            .button-clear {
+                color: #ffffff !important;
+            }
+
+            .hr-outer {
+                text-align: center;
+                position: relative;
+                opacity: .5;
+                display: flex;
+            }
+
+            .hr-inner {
+                display: inline-block;
+                color: white;
+                font-size: 0.65em;
+                align-items: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+            }
+
+            .hr-inner:before, .hr-inner:after {
+                border-top: 1px solid white;
+                display: block;
+                height: 1px;
+                content: " ";
+                width: 40%;
+                position: absolute;
+                left: 0;
+                top: .8em;
+            }
+
+            .hr-inner:after {
+                right: 0;
+                left: auto;
+            }
+        }
+
+        .button-back {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            color: #ffffff;
+            font-family: Roboto;
+        }
+
+        input {
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 0px solid white;
+            border-radius: 4px;
+            color: #fff;
+            margin-bottom: 10px;
+            padding: 18px;
+            padding-left: 20px;
+        }
+
+        input {
+            width: 100%;
+            color: #fff;
+            height: 30px;
+        }
+
+        input::placeholder {
+            color: #fff;
+        }
+
+        p {
+            margin: 0 0 10px;
+        }
+
+        p.input-error {
+            color: #fb9006;
+            font-weight: bold;
+            padding: 0 5px;
+            margin-top: -5px;
+            font-size: 13px;
+        }
+    }
+}
+
+div input[type="text"], div input[type="password"], div input[type="number"], div input[type="tel"] {
+    padding-left: 10px;
+}
