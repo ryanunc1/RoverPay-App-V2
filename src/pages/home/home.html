@@ -1,14 +1,21 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton>
+    <img start class="logo" src="assets/imgs/Rover_Animate_300px.gif">
+
     <ion-title>
-      Ionic Blank
+      <ion-item>
+        <ion-input type="text" placeholder="Zip code"></ion-input>
+        <ion-input type="text" placeholder="Search"></ion-input>
+      </ion-item>
     </ion-title>
+
+    <ion-buttons end>
+      <button ion-fab mini (click)="openMenu()">
+        <ion-icon name="ios-menu-outline"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  
 </ion-content>
