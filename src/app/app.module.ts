@@ -7,9 +7,10 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http'; 
 
 import { MyApp } from './app.component';
+import { Walkthrough } from '../pages/walkthrough/walkthrough';
 import { HomePage } from '../pages/home/home';
 import { DetailPage } from '../pages/detail/detail';
-import { Walkthrough } from '../pages/walkthrough/walkthrough';
+import { ProfilePage } from '../pages/profile/profile';
 import { APIProvider } from '../providers/roverpay.api';
 import { User } from '../implementation/roverpay.impl';
 
@@ -18,7 +19,8 @@ import { User } from '../implementation/roverpay.impl';
     MyApp,
     HomePage,
     Walkthrough,
-    DetailPage
+    DetailPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { User } from '../implementation/roverpay.impl';
     MyApp,
     HomePage,
     Walkthrough,
-    DetailPage
+    DetailPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

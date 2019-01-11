@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { Platform, MenuController, ActionSheetController  } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, MenuController, ActionSheetController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Walkthrough } from '../pages/walkthrough/walkthrough';
 import { HomePage } from '../pages/home/home';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { User } from '../implementation/roverpay.impl';
 
@@ -13,7 +14,9 @@ import { User } from '../implementation/roverpay.impl';
 })
 export class MyApp {
   
-  rootPage:any;
+  rootPage: any;
+
+  @ViewChild(Nav) nav: Nav;
 
   constructor(platform: Platform,
     statusBar: StatusBar,
@@ -54,13 +57,19 @@ export class MyApp {
   }
 
   navigatePage(menu: SideMenu) {
-    
+    this.menuCtrl.close();
     switch(menu) {
       case 'profile': {
+        this.nav.push(ProfilePage);
         break;
       }
       case 'logout': {
         this.doLogout();
+        break;
+      }
+      case 'home': {
+        this.rootPage = HomePage;
+        this.nav.popToRoot();
         break;
       }
     }
@@ -92,5 +101,5 @@ export class MyApp {
   }
 }
 
-export type SideMenu = 'profile' | 'logout';
+export type SideMenu = 'home' | 'profile' | 'logout';
 

@@ -1,0 +1,78 @@
+page-profile {
+    ion-header {
+        background: transparent !important;
+        border-bottom: 0 !important;
+        .close {
+            background-color: transparent;
+            color: white;
+            position: absolute;
+            right: 5px;
+            font-size: 17px;
+            font-weight: 800;
+            border: 0;
+        }
+
+
+    }
+
+    .header-ios .toolbar-ios:last-child .toolbar-background-ios {
+        border-width: 0 !important;
+    }
+
+    ion-content {
+        .scroll-content {
+            margin-top: 0 !important;
+        }
+        .name-phone-container {   
+            background-image: url("/assets/imgs/profile-name-bg.png");
+            background-size: cover;
+        }
+
+        .row {
+            padding: 0;
+        }
+
+        .row.name {
+            min-height: 20vh;
+        }
+
+        .row.phone {
+            min-height: 50px;
+            background-color: rgba(47, 107, 102, 0.51);
+            color: white;
+
+            h3 {
+                margin: 2vh 0 2vh;
+                color: white !important;
+                font-size: 0.8em;
+            }
+
+            .edit-button {
+                position: absolute;
+                right: 0;
+                color: white;
+                background: transparent;
+                font-size: 0.8em;
+                top: 0;
+                padding: 5px;
+            }
+        }
+
+        .phone-number a {
+            color: white !important;
+            outline: 0;
+            text-decoration: none;
+        }
+
+
+        .header {
+            h2 {
+                font-family: Handlee;
+                margin-top: 4vh;
+                color: white !important;
+                margin-bottom: 10px;
+                font-size: 30px;
+            }
+        }
+    }
+}
