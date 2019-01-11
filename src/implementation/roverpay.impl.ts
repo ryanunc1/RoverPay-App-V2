@@ -41,7 +41,17 @@ export class User extends Profile implements model.User {
         });
     }
 
-    setToken(token: string){
+    setUser(user: string) {
+        console.log("string user")
+        this.storage.set('user', user)
+    }
+
+    getUser(callback: (data: any) => void) {
+        this.storage.get('user')
+            .then(data => callback(data))
+    }
+
+    setToken(token: string) {
         this.storage.set('auth-token', token);
     }
 
@@ -52,6 +62,17 @@ export class User extends Profile implements model.User {
 
     removeToken() {
         this.storage.remove('auth-token');
+    }
+
+    getAllVenue(callback: (data: any) => void) {
+        let query = '?getAll=true';
+        this.api.searchVenue(query, (result) => {
+            callback(result);
+        });
+    }
+
+    getVenueByLocation() {
+
     }
 
     profile: model.Profile;

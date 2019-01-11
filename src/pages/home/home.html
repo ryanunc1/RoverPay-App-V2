@@ -16,6 +16,20 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content>
-  
+<ion-content class="card-background-page">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content 
+      pullingText="Pull to refresh..."
+      pullingIcon="ios-arrow-round-down"
+    ></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let venue of venues" 
+    class="item-bg-img" 
+    [style.background-image]="getBackgroundImage(venue.pictures[0])"
+    (click)="gotoDetailPage(venue)">
+    <div class="item-overlay" [ngClass]="venue.style"></div>
+    <p class="item-reward" [ngClass]="{'always_on': (venue.campaignToDisplay.filter === 'always_on')}"
+    *ngIf="venue.campaigns.length">{{venue.campaignToDisplay.rewardLevel}}%</p>
+    <h2 class="title item-text">{{venue.title}}</h2>
+  </ion-card>
 </ion-content>

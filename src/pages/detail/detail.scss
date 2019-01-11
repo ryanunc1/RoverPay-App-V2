@@ -1,0 +1,100 @@
+page-detail {
+
+    .card-background-page {
+        font-weight: 100;
+        ion-card {
+            position: relative;
+            text-align: center;
+            margin: 0;
+            min-height: 200px;
+            width: 100%;
+            background-size: cover !important;
+            border-color: #ddd;
+            background-color: #fff;
+            color: #444;
+            position: relative;
+            z-index: 2;
+            display: block;
+            padding: 16px;
+            border-width: 1px;
+            border-style: solid;
+            font-size: 16px;
+
+            .title {
+                max-width: 90%;
+                left: 20px;
+
+                h2 {
+                    font-weight: 400 !important;
+                }
+            }
+
+            .description {
+                color: #ffffff;
+                white-space: normal;
+                font-size: 14px;
+            }
+        }
+
+        .badge {
+            background-color: transparent;
+            color: #AAAAAA;
+            z-index: 1;
+            display: inline-block;
+            padding: 3px 8px;
+            min-width: 10px;
+            border-radius: 10px;
+            vertical-align: baseline;
+            text-align: center;
+            white-space: nowrap;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+        .badge-tag {
+            border-radius: 3px !important;
+            padding: 5px 10px 5px 10px;
+            border-bottom: 2px inset rgba(0, 0, 0, 0.4) !important;
+            margin-right: 6px;
+            font-weight: 100;
+        }
+
+        .badge.badge-dark, .badge.badge-dark {
+            background-color: #5e5346;
+            color: #fff;
+        }
+
+        .like-button {
+            color: #fb9006;
+            float: right;
+            font-size: 28px;
+            display: inline-block;
+        }
+
+        .special-div, .reward-div, .paybutton-div  {
+
+            margin-top: -5px;
+            padding-top: 0;
+
+            h3 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-size: 24px;
+            }
+
+            .detail-ul {
+                list-style-type: disc !important;
+                list-style-position: inside;
+                font-size: 14px;
+                font-weight: 100;
+                color: #444444;
+
+                .reward-text {
+                    color: #fb6206;
+                }
+            }
+        }
+        
+    }
+}

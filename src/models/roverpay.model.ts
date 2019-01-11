@@ -12,6 +12,12 @@ export interface User extends Profile {
 
     setToken(token: string, callback: () => void);
 
+    getAllVenue(callback: (data: any) => void);
+
+    setUser(user: string);
+
+    getUser(callback: (data: any) => void);
+
     profile: Profile;
 }
 
