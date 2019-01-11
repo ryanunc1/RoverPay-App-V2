@@ -223,6 +223,11 @@ button[disabled], html input[disabled] {
     border-bottom: 2px inset rgba(0, 0, 0, 0.4) !important;
 }
 
+.button-energized.active, .button-energized.activated {
+    border-color: #a2a2a2;
+    background-color: #e45804;
+}
+
 
 // grid
 
