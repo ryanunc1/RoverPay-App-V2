@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" width="269.623" height="258.422" viewBox="0 0 269.62 258.42" enable-background="new 0 0 269.62 258.42" xml:space="preserve">
+	<filter id="Filter_DropShadow1_" filterUnits="userSpaceOnUse">
+		<feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blur"/>
+		<feOffset dx="6.29921" dy="6.29921" in="blur" result="offsetBlurredAlpha"/>
+		<feMerge>
+			<feMergeNode in="offsetBlurredAlpha"/>
+			<feMergeNode in="SourceGraphic"/>
+		</feMerge>
+	</filter>
+	<path fill="#fb9006" fill-opacity="1" stroke-width="8.00069" stroke-linecap="round" stroke-linejoin="round" stroke="#fb9006" stroke-opacity="1" filter="url(#Filter_DropShadow1_)" d="M 203.378,235.114L 192.654,154.411L 247.747,94.4708L 167.68,79.7309L 127.698,8.81163L 88.9374,80.4055L 9.13416,96.5149L 65.2462,155.502L 55.9067,236.378L 129.347,201.24L 203.378,235.114 Z "/>
+</svg>

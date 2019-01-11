@@ -46,6 +46,12 @@ export class APIProvider {
     });
   }
 
+  searchVenue(query: string, callback: (result: any) => void) {
+    this.callAPI('venues/search' + query, {}, (result) => {
+      callback(result);
+    });
+  }
+
   private callAPI(endpoint: string, data: any, callback: (result: any | null) => void) {
     this.http.post(APIURL + endpoint, data)
       .map(res => res)

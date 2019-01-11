@@ -95,7 +95,16 @@ export class Walkthrough {
         this.setupUserClass(result);
 
         this.user.setToken(this.user.token);
-        this.navCtrl.push(HomePage, {user: this.user});
+        let storageUser = {
+          "username": this.user.username,
+          "userId": this.user.userId,
+          "token": this.user.token,
+          "firstName": this.user.firstName
+        }
+
+        this.user.setUser(JSON.stringify(storageUser));
+
+        this.navCtrl.push(HomePage);
       }
 
     });
