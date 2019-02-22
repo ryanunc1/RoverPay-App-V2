@@ -1,0 +1,117 @@
+<ion-content class="walkthrough-view">
+  <div ion-fixed>
+    <div *ngIf="viewLoaded" class="top-content row animated zoomIn animate-duration-300" [ngClass]="{'padding-top': (state === 'default')}">
+      <div class="col col-center"  (click)="changeState('default')">
+        <button *ngIf="state !== '' && state !== 'default'" class="button button-clear button-back" (click)="changeState('default')">&lt; back</button>
+        <img class="logo" src="assets/imgs/Rover_Animate_300px.gif">
+        <h1>rover pay</h1>
+      </div>
+    </div>
+
+    <!--   !default state   -->
+    <div [hidden]="!(state === 'default')" class="bottom-content row animated animate-duration-300" [ngClass]="{zoomIn: (state === 'default'), zoomOut: (state !== 'default')}">
+      <div class="col col-center col-10"></div>
+      <div class="col col-center col-33">
+        <a class="button button-block button-light" (click)="changeState('login')">
+          login
+        </a>
+      </div>
+      <div class="col col-center col-10"></div>
+      <div class="col col-center col-33">
+        <a class="button button-block button-positive" (click)="changeState('sign-up')">
+          sign up
+        </a>
+      </div>
+      <div class="col col-center col-10"></div>
+    </div>
+
+    <!--   !login state   -->
+    <div [hidden]="!(state === 'login')" class="bottom-content animated animate-duration-300" [ngClass]="{zoomIn: (state === 'login'), zoomOut: (state !== 'login')}">
+      <div class="form-container col col-center col-80 col-offset-10">
+        <form name="login_form">
+          <div [formGroup]="loginForm" class="list">
+            <input type="text" formControlName="username" placeholder="Username (Phone or Email)" autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="off" required>
+            <input type="password" formControlName="password" placeholder="Password" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+          </div>
+          <div class="">
+            <button class="button button-positive button-block" 
+                    (click)="doLogin()" 
+                    [disabled]="(loginUsername.invalid || loginPassword.invalid)">
+              login
+            </button>
+          </div>
+        </form>
+
+        <div class="alternative-actions">
+          <a class="forgot-password button button-clear" (click)="changeState('forgot')">
+            forgot password?
+          </a>
+          <div class="hr-outer"><span class="hr-inner">or</span></div>
+          <a class="button button-clear button-light facebook" (click)="doFBLogin()">
+            <ion-icon name="logo-facebook"></ion-icon>
+            log in with facebook
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!--   !signup state   -->
+    <div [hidden]="!(state === 'sign-up')" class="bottom-content animated animate-duration-300" [ngClass]="{zoomIn: (state === 'sign-up'), zoomOut: (state !== 'sign-up')}">
+      <div class="form-container col col-center col-80 col-offset-10">
+        <form name="sign_up_form" class="">
+          <div [formGroup]="signUpForm" class="list">
+            <input type="text" [ngClass]="((signUpFirstname.invalid && !signUpFirstname.pristine) ? 'invalid': '')" formControlName="firstName" placeholder="First Name" name="user_firstname" autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="off" required>
+            
+            <input type="text" [ngClass]="((signUpUsername.invalid && !signUpUsername.pristine) ? 'invalid': '')" formControlName="username" placeholder="Email" name="user_username" autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="off" required>
+            <p *ngIf="(signUpUsername.invalid && !signUpUsername.pristine)" class="input-error">Invalid email address</p>
+
+            <input type="password" [ngClass]="((signUpPassword.invalid && !signUpPassword.pristine) ? 'invalid': '')" formControlName="password" placeholder="Password" name="user_password" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+            <p *ngIf="(signUpPassword.invalid && !signUpPassword.pristine)" class="input-error">Password must be 8 characters</p>
+
+          </div>
+          <div class="">
+            <button type="submit" class="button button-positive button-block" 
+                    (click)="doSignup()" 
+                    [disabled]="(signUpFirstname.invalid || signUpUsername.invalid || signUpPassword.invalid)">
+              sign up
+            </button>
+          </div>
+        </form>
+
+        <div class="alternative-actions">
+          <div class="hr-outer"><span class="hr-inner">or</span></div>
+          <a class="button button-clear button-light facebook">
+            <ion-icon name="logo-facebook"></ion-icon>
+            sign up with facebook
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- forgot password state -->
+    <div [hidden]="!(state === 'forgot')" class="bottom-content animated animate-duration-300" 
+          [ngClass]="{zoomIn: (state === 'forgot'), zoomOut: (state !== 'forgot')}">
+      <div class="form-container col col-center col-80 col-offset-10">
+        <form name="forgot_form" class="" novalidate>
+          <div [formGroup]="forgotPasswordForm" class="list">
+            <input type="text" [ngClass]="((forgotPasswordUsername.invalid && !forgotPasswordUsername.pristine) ? 'invalid': '')" formControlName="username" placeholder="Username (Phone or Email)" name="user_username" autocorrect="off" autocapitalize="off" spellcheck="false" autocomplete="off" required>
+          </div>
+          <div class="">
+            <button type="submit" class="button button-positive button-block" (click)="doForgotPassword()" 
+                    [disabled]="(forgotPasswordUsername.invalid)">
+              send me a code
+            </button>
+          </div>
+        </form>
+
+        <div class="alternative-actions">
+          <a class="forgot-password button button-small button-full button-clear" (click)="changeState('login')">
+            back to login
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

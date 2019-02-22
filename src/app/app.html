@@ -1,0 +1,32 @@
+<ion-menu side="right" [content]="roverpaycontent">
+    <ion-content>
+        <ion-list>
+            <ion-item menuClose (click)="navigatePage('home')">
+                <ion-icon ios="md-home" md="md-home" android="md-home" item-start></ion-icon>
+                <ion-label>Home</ion-label>
+            </ion-item>
+            <ion-item menuClose (click)="navigatePage('profile')">
+                <ion-icon ios="ios-person" md="ios-person" android="ios-person" item-start></ion-icon>
+                <ion-label>Profile</ion-label>
+            </ion-item>
+            <ion-item menuClose (click)="navigatePage('rewardhistory')">
+                <ion-icon ios="ios-cash" md="ios-cash" android="ios-cash" item-start></ion-icon>
+                <ion-label>Reward History</ion-label>
+            </ion-item>
+            <ion-item menuClose (click)="navigatePage('favorite')">
+                <ion-icon ios="md-heart" md="md-heart" android="md-heart" item-start></ion-icon>
+                <ion-label>Favorites</ion-label>
+            </ion-item>
+            <ion-item menuClose (click)="navigatePage('promotion')">
+                <ion-icon ios="ios-pricetags" md="ios-pricetags" android="ios-pricetags" item-start></ion-icon>
+                <ion-label>Promotions</ion-label>
+            </ion-item>
+            <a ion-item detail-none menuClose (click)="navigatePage('logout')">
+                <ion-icon ios="md-log-out" md="md-log-out" android="md-log-out" item-start></ion-icon>
+                <ion-label>Logout</ion-label>
+            </a>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #roverpaycontent class="main background-settings" [root]="rootPage"></ion-nav>

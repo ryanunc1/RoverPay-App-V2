@@ -1,0 +1,67 @@
+<ion-content>
+  <div class="modal-content">
+    <div class="venue-bg-pic multi-bg-outer" [style.background-image]="getBackgroundImage(currentVenue?.pictures[0])" *ngIf="currentVenue">
+      <div class="venue-image-overlay"></div>
+      <div class="venue-name">{{currentVenue?.title}}</div>
+      <div class="date">{{currentTransaction?.createdAt | date:'MMM d, y h:mma'}}</div>
+    </div>
+    <div class="inner">
+      <div class="row checkout-amount">
+        <div class="col-50">
+          Check Amount:
+        </div>
+        <div class="col-50">
+          {{currentTransaction?.checkAmount/100 | currency}}
+        </div>
+      </div>
+      <div class="row checkout-amount">
+        <div class="col-50">
+          Tip:
+        </div>
+        <div class="col-50">
+          {{currentTransaction?.tip/100 | currency}}
+        </div>
+      </div>
+      <div class="row checkout-amount" [hidden]="!currentTransaction?.rewardPointsUsed > 0">
+          <div class="col-50">
+            Rover Discount:
+          </div>
+          <div class="col-50">
+            {{currentTransaction?.rewardPointsUsed}}
+          </div>
+        </div>
+      <div class="row checkout-amount total">
+        <div class="col-50">
+          <b>Total:</b>
+        </div>
+        <div class="col-50">
+          {{currentTransaction?.total/100 | currency}}
+        </div>
+      </div>
+    </div>
+    <div class="rover-points-bg">
+      <div class="row">
+        <p style="font-weight:400;">Rover Points</p>
+      </div>
+      <div class="row rover-points-summary">
+        <div class="col-50">
+          Used: 
+        </div>
+        <div class="col-50">
+          {{currentTransaction?.rewardPointsUsed | number}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50">
+          Earned: 
+        </div>
+        <div class="col-50">
+          {{currentTransaction?.rewardPointsEarned | number}}
+        </div>
+      </div>
+    </div>
+    <div class="close-container clearfix">
+      <button class="close" (click)="hideTransactionInfo()">CLOSE</button>
+    </div>
+  </div>
+</ion-content>

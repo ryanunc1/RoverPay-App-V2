@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar hideBackButton end>
+        <a class="close" ion-button small (click)="close()">
+            <ion-icon name="md-close"></ion-icon>
+        </a>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div class="name-phone-container">
+        <div class="row name">
+            <div class="col col-center text-center header">
+                <h2>{{user.firstName}}</h2>
+            </div>
+        </div>
+        <div class="row phone">
+            <div class="col col-center text-center" no-padding>
+                <a [hidden]="isEdit" ion-button icon-only small class="edit-button" (click)="editProfile()">
+                    <ion-icon name="md-create"></ion-icon>
+                </a>
+                <h3>
+                    <span [hidden]="isEdit" class="phone-number">
+                        <a href="#">{{email}}</a>
+                    </span>
+                    <input [hidden]="!isEdit" type="email" [(ngModel)]="email" class="modify-phone-input" placeholder="Update Username (Email)" name="user_email" required>
+                </h3>
+                <a [hidden]="!isEdit" no-margin class="button button-positive button-full" (click)="updateEmailAddress()">Update Username (Email)</a>
+                <a [hidden]="!isEdit" no-margin class="button button-full" (click)="editProfile()">Cancel</a>
+            </div>
+        </div>
+    </div>
+    <div [hidden]="isEdit" class="row actions">
+        <div class="col">
+            <a class="button settings button-block button-full" (click)="showChangeName()">Change Name</a>
+            <a class="button settings button-block button-full" (click)="showChangePassword()">Change Password</a>
+            <a class="button settings button-block button-full" (click)="showPayment()">Manage Payment</a>
+            <a *ngIf="showNofifService" class="button settings button-block button-full" (click)="enablePushNotif()">Enable Offer Notifications</a>
+            <a *ngIf="showLocationService" class="button settings button-block button-full" (click)="enableLocation()">Enable Location Services</a>
+        </div>
+    </div>
+</ion-content>

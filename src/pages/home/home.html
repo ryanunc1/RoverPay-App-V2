@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <img start class="logo" src="assets/imgs/Rover_Animate_300px.gif">
+
+    <ion-title>
+      <ion-item>
+        <ion-input type="text" (keypress)="keydown($event)" [(ngModel)]="zipCode" placeholder="Zip code"></ion-input>
+        <ion-input type="text" (keypress)="keydown($event)" [(ngModel)]="searchText" placeholder="Search"></ion-input>
+      </ion-item>
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-fab mini (click)="openMenu()">
+        <ion-icon name="ios-menu-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="card-background-page">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content 
+      pullingText="Pull to refresh..."
+      pullingIcon="ios-arrow-round-down"
+    ></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let venue of venues" 
+    class="item-bg-img" 
+    [style.background-image]="getBackgroundImage(venue.pictures[0])"
+    (click)="gotoDetailPage(venue)">
+    <div class="item-overlay" [ngClass]="venue.style"></div>
+    <p class="item-reward animated animate-duration-1000 bounceInDown" [ngClass]="{'always_on': (venue.campaignToDisplay.filter === 'always_on')}"
+    *ngIf="venue.campaigns.length">{{venue.campaignToDisplay.rewardLevel}}%</p>
+    <h2 class="title item-text">{{venue.title}}</h2>
+  </ion-card>
+  <div class="card list-error" [hidden]="isLoading || venues.length > 0">
+    <div class="nofound item item-text-wrap">
+      <p><b>No venues found</b></p>
+      <a *ngIf="!locationError" class="button button-balanced button-full nomargin-bottom" (click)="getVenueByLocation()">Use Current Location</a>
+      <a class="button button-balanced button-full" (click)="getAllVenue()">Show All Venues</a>
+    </div>
+  </div>
+</ion-content>
