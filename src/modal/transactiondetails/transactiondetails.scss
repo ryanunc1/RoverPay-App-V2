@@ -1,0 +1,111 @@
+modal-transactiondetails {
+  background: rgba(0, 0, 0, 0.59);
+
+  ion-content {
+    background-color: transparent !important;
+
+    .modal-content {
+      margin: 3vw;
+      background: white;
+
+      .inner {
+        padding: 7vw 5vw;
+      }
+    }
+
+    .venue-bg-pic {
+      width: 100%;
+      height: 25vh;
+      position: relative;
+      
+      * {
+        color: white;
+      }
+
+      .venue-image-overlay {
+        position: absolute;
+        z-index: 5;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 40%;
+        background-image: linear-gradient(to top, #9de0da, rgba(157, 224, 218, 0));
+      }
+
+      .venue-name {
+        position: absolute;
+        left: 3vw;
+        bottom: 10vw;
+        font-size: 22px;
+        z-index: 10;
+      }
+
+      .date {
+        position: absolute;
+        left: 3vw;
+        bottom: 4vw;
+        font-size: 14px;
+        z-index: 10;
+      }
+    }
+
+    .checkout-amount {
+      font-size: 17px;
+      padding-right: 2vw;
+
+      > div {
+        text-align: right;
+        padding: 2% 0;
+      }
+
+      > div:last-child {
+        color: #3f9891;
+      }
+    }
+
+    .checkout-amount.total {
+      font-weight: bold;
+    }
+
+    .rover-points-bg {
+      padding: 5vw;
+      font-size: 18px;
+      padding-right: 5vw;
+      background: whitesmoke;
+
+      * {
+        color: #fb6206;
+        font-weight: 300;
+      }
+
+      .row {
+        > div:first-child {
+          text-align: right;
+        }
+
+        > div:last-child {
+          padding-right: 2vw;
+          text-align: right;
+        }
+      }
+    }
+
+    .rover-points-summary {
+      padding-bottom: 13px;
+    }
+
+    .close-container {
+      padding: 8vw 4.5vw 4vw;
+      width: 100%;
+      .close {
+        float: right;
+        border: none;
+        background: none;
+        outline: none;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 1.42857;
+      }
+    }
+  }
+}

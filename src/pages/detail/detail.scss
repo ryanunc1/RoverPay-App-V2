@@ -20,6 +20,20 @@ page-detail {
             border-style: solid;
             font-size: 16px;
 
+            .directions {
+                color: white;
+                position: absolute;
+                top: 1px;
+                right: 1px;
+                background: transparent;
+                font-weight: 400;
+
+                &.button.active,
+                &.button.activated {
+                    border: 0;
+                }
+            }
+
             .title {
                 max-width: 90%;
                 left: 20px;
@@ -57,7 +71,7 @@ page-detail {
             padding: 5px 10px 5px 10px;
             border-bottom: 2px inset rgba(0, 0, 0, 0.4) !important;
             margin-right: 6px;
-            font-weight: 100;
+            font-weight: 400;
         }
 
         .badge.badge-dark, .badge.badge-dark {
@@ -87,11 +101,12 @@ page-detail {
                 list-style-type: disc !important;
                 list-style-position: inside;
                 font-size: 14px;
-                font-weight: 100;
+                font-weight: 400;
                 color: #444444;
 
                 .reward-text {
                     color: #fb6206;
+                    font-weight: 400;
                 }
             }
         }

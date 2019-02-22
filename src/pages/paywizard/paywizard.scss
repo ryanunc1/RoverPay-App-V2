@@ -1,0 +1,471 @@
+page-paywizard {
+  .button-balanced {
+    border-radius: 3px !important;
+    min-height: 40px !important;
+    border-bottom: 2px inset rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .button.button-balanced {
+    border-color: transparent;
+    background-color: #59b6b0;
+    color: #fff;
+  }
+
+  .button.button-balanced.active,
+  .button.button-balanced.activated {
+    border-color: #a2a2a2;
+    background-color: #439993;
+  }
+
+  ion-slide.swiper-slide {
+    align-items: flex-start;
+  }
+
+  ion-slides.slides {
+    height: 100%;
+  }
+  
+  .swiper-pagination {
+    bottom: 0px;
+  }
+
+  ion-content {
+
+    //1st slide
+    .cc-cont {
+      padding: 0 3%;
+      margin-top: 11%;
+    }
+
+    .next-btn {
+      color: white !important;
+      float: right;
+      margin-top: 8%;
+      padding: 10px 20px;
+      font-size: 21px;
+      line-height: 1;
+
+      &.back-btn {
+        float: left;
+        background-color: #999;
+      }
+    }
+
+    .update-payment-cont {
+      position: relative;
+      text-align: center;
+
+      p {
+        position: absolute;
+        top: 50%;
+        margin: 0;
+        margin-top: -12px;
+        text-align: center;
+        right: 0;
+        left: 0;
+        font-size: 10px;
+        font-weight: 300;
+      }
+    }
+
+    .fake-cc {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+
+      .img-cont {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 2px 2px 2px grey;
+
+        img {
+          width: 100%;
+          display: block;
+        }
+
+        .rover-blink {
+          position: absolute;
+          bottom: -28%;
+          left: -2%;
+          width: 12vh;
+          opacity: .4;
+        }
+      }
+
+      .nickname {
+        position: absolute;
+        top: 4%;
+        left: 4%;
+        font-size: 15px;
+        color: white;
+        font-family: Handlee;
+      }
+
+      .name {
+        position: absolute;
+        bottom: 10%;
+        color: white;
+        left: 28%;
+        font-size: 11px;
+      }
+
+      .number {
+        position: absolute;
+        bottom: 0%;
+        color: white;
+        left: 28%;
+        font-size: 11px;
+      }
+
+      .expiry {
+        position: absolute;
+        right: 4%;
+        color: white;
+        bottom: 6%;
+        font-size: 11px;
+      }
+    }
+
+    .lower-cont {
+      padding: 0 3%;
+      text-align: left;
+      font-weight: 300;
+
+      .ready-text {
+        font-size: 15px;
+        margin: 7% 0 2.5%;
+
+        .check-this-out {
+          font-weight: bold;
+        }
+      }
+
+      .love-this {
+        font-size: 13px;
+        margin-bottom: 8%;
+      }
+
+      .total-text {
+        font-size: 15px;
+
+        .step {
+          font-weight: bold;
+        }
+      }
+
+      .total-subtext {
+        color: #B1B1B1;
+        margin-top: 0%;
+        margin-bottom: 6%;
+        font-size: 15px;
+      }
+
+      .total-input {
+        width: 100%;
+        border: 2px solid #3f9891;
+        padding: 9px 4px;
+        height: auto;
+        font-size: 30px;
+        line-height: 31px;
+        text-align: right;
+        border-radius: 3px;
+        background: whitesmoke;
+        font-weight: 400;
+      }
+    }
+
+    p.next-tier {
+      font-size: 15px;
+      color: #fb6206;
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+
+    .bottom-cont {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+
+      .bottom-rover {
+        float: left;
+        width: 30px;
+        opacity: .8;
+        margin: 0 0 10px 10px;
+      }
+
+      .cancel {
+        border: none;
+        background: none;
+        outline: none;
+        float: right;
+        margin-top: 10px;
+        height: 100%;
+        font-size: 14px;
+      }
+    }
+
+    //2nd slide
+    .banner-top {
+      background: #fb6206;
+      color: white;
+      font-size: 14px;
+      line-height: 22px;
+      text-align: center;
+      padding-top: 20px;
+      padding-top: constant(safe-area-inset-top);
+      padding-top: env(safe-area-inset-top);
+      border-style: solid;
+      border-width: 0 0 2px 0;
+      border-color: #a84408;
+      margin-bottom: 10px;
+
+      * {
+        color: white;
+      }
+
+      .num-reward-points,
+      .tier {
+        font-weight: bold;
+      }
+    }
+
+    .page-container {
+      padding: 3% 5% 0;
+    }
+
+    .tip-question {
+      font-size: 15px;
+      margin: 6% 0 0;
+    }
+
+    .tip-question {
+      font-size: 15px;
+      margin: 6% 0 0;
+      font-weight: 300;
+      text-align: left;
+      .step {
+        font-weight: bold;
+      }
+    }
+
+    .row {
+      &.tip-buttons {
+        padding: 6% 0 0;
+
+        > div {
+          text-align: right;
+
+          button {
+            width: 90%;
+            min-height: 0 !important;
+            line-height: 36px;
+          }
+
+          button.selected {
+            background: #59b6b0;
+            color: white;
+            span {
+              background: #59b6b0;
+              color: white;
+            }
+          }
+        }
+
+        > div:first-child {
+          text-align: left;
+        }
+      }
+    }
+
+    .tip-input-row {
+      align-items: center;
+      margin-top: 9% !important;
+
+      .custom-tip-label {
+        font-size: 15px;
+        text-align: right;
+        display: block;
+        margin-right: 10%;
+      }
+    }
+
+    input {
+      &.tip-input {
+        width: 90%;
+        float: right;
+        border: 2px solid #3f9891;
+        padding: 7px 4px;
+        height: auto;
+        font-size: 16px;
+        line-height: 1.1;
+        text-align: right;
+        border-radius: 3px;
+        background: whitesmoke;
+      }
+    }
+    
+    .next-prev-buttons {
+      width: 100%;
+      margin-top: 12%;
+
+      button {
+        margin-top: 7%;
+      }
+    }
+
+    //3rd slide
+    .step-container {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+      text-align: left;
+      font-weight: 300;
+
+      .step {
+        font-weight: 500;
+      }
+    }
+
+    .checkout-amount {
+      font-size: 17px;
+      font-weight: 300;
+      > div {
+        text-align: right;
+        padding: 2% 0;
+      }
+
+      > div:last-child {
+        color: #3f9891;
+      }
+
+      &.total {
+        font-weight: 500;
+      }
+    }
+
+    .available-rewards-container {
+      width: 100%;
+      margin-top: 4vh;
+      padding: 5% 5% 7%;
+      background: whitesmoke;
+      border-top: 2px solid silver;
+      border-bottom: 2px solid silver;
+
+      .available-rewards-text {
+        text-align: right;
+        color: #fb6206;
+        font-size: 17px;
+        margin: 0 0 10px;
+
+        .number-rewards {
+          font-weight: bold;
+          color: #fb6206;
+        }
+      }
+
+      .how-many-points {
+        color: #fb6206;
+        margin: 0 0 10px;
+        text-align: left;
+        font-size: 14px;
+      }
+
+      input {
+        &.number-of-points {
+          border: 1px solid #fb6206;
+          float: right;
+          margin-right: 5%;
+          border-radius: 3px;
+          color: #fb6206;
+          text-align: right;
+        }
+      }
+
+      button {
+        &.apply-rewards,
+        &.cancel-apply-rewards {
+          margin-top: 0;
+          float: right;
+          font-size: 14px;
+          padding: 9px 13px;
+          min-height: 0 !important;
+        }
+
+        &.apply-rewards {
+          margin-right: 2%;
+        }
+
+        &.cancel-apply-rewards {
+          font-size: 16px;
+          padding: 9px 14px;
+          min-width: 0;
+          line-height: 14px;
+        }
+      }
+
+    }
+
+    .checkout-button-container {
+      width: 100%;
+
+      .next-btn {
+        &.checkout-button,
+        &.back-btn {
+          padding: 10px 25px;
+          font-size: 17px;
+          margin-top: 12%;
+        }
+      }
+    }
+
+    //4th slide
+
+    .payment-success {
+      background: #fb9006;
+
+      .high-fives {
+        margin: 0 0 10px;
+        width: 100%;
+        text-align: center;
+        margin-top: 11vh;
+        margin-bottom: 9vh;
+        font-size: 30px;
+        color: white;
+      }
+
+      .done-message {
+        text-align: left;
+        font-weight: 400;
+        font-size: 14px;
+        margin: 0 0 10px;
+        color: white;
+        padding: 0 4%;
+        line-height: 1.7;
+      }
+
+      .code-word {
+        margin: 0 0 10px;
+        font-size: 25px;
+        color: white;
+        text-align: center;
+        margin-top: 7vh;
+        font-family: Handlee;
+      }
+
+      button {
+        &.close-wizard {
+          background: #fb6206;
+          position: absolute;
+          bottom: 6vh;
+          right: 7vw;
+          font-size: 15px;
+        }
+      }
+    }
+
+  }
+}

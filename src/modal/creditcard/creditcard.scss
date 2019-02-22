@@ -1,0 +1,214 @@
+modal-creditcard {
+  background: rgba(0, 0, 0, 0.59);
+
+  ion-content {
+
+    input {
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 1.42857;
+    }
+
+    p {
+      font-size: 15px;
+      font-weight: 200;
+    }
+
+    h3, p {
+      padding-left: 6px;
+      margin: 0 0 10px;
+    }
+
+    .pin-container {
+      text-align: center;
+    }
+
+    .button-darkgreen {
+      color: #ffffff;
+    }
+
+    .bottom-buttons {
+      width: 100%;
+      margin-top: 8%;
+
+      .cancel {
+        background: none;
+        border: none !important;
+        color: gray;
+        text-transform: uppercase;
+        float: left;
+        margin-top: 8px;
+        font-size: 13px;
+      }
+
+      .add-cc {
+        background: #fb6206;
+        font-size: 15px;
+        color: white;
+        float: right;
+        padding: 10px 20px;
+        line-height: 1;
+        border-radius: 3px !important;
+        border: none;
+        border-bottom: 2px inset rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    .delete-card {
+      float: right;
+    }
+
+    .delete-card,
+    .reset-pin {
+      min-width: 0;
+      min-height: 0 !important;
+      padding: 10px 7px;
+      line-height: 1;
+      font-size: 13px;
+    }
+
+    .reset-pin {
+      float: right;
+      margin-right: 3vw;
+    }
+
+    background-color: transparent !important;
+
+    .page-content {
+      padding: 3vw;
+      margin: 3vw;
+      margin-top: 25px;
+      background: white;
+      border-radius: 5px;
+
+      .fake-cc {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        box-shadow: 4px 6px 8px grey;
+        margin-bottom: 2.5vh;
+
+        .nickname {
+          position: absolute;
+          top: 9%;
+          left: 6%;
+          font-size: 20px;
+          color: white;
+          font-family: Handlee;
+          font-weight: 400;
+          margin-bottom: 0;
+        }
+
+        .name {
+          position: absolute;
+          left: 33%;
+          bottom: 20%;
+          color: white;
+          font-size: 14px;
+          font-weight: 400;
+          margin-bottom: 0;
+        }
+
+        .number {
+          position: absolute;
+          left: 33%;
+          bottom: 5%;
+          color: white;
+          font-size: 14px;
+          font-weight: 400;
+          margin-bottom: 0;
+        }
+
+        .expiry {
+          position: absolute;
+          right: 7%;
+          bottom: 7%;
+          color: white;
+          font-weight: 400;
+          margin-bottom: 0;
+        }
+
+        .img-cont {
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+
+          img {
+            width: 100%;
+            display: block;
+          }
+
+          .rover-blink {
+            position: absolute;
+            bottom: -38%;
+            left: 0%;
+            width: 18vh;
+            opacity: .3;
+          }
+        }
+
+        input {
+          border: 1px solid #357A75;
+          border-radius: 3px;
+          padding: 3px 0 3px 7px;
+        }
+
+        input.invalid {
+          border: 2px solid #d85959;
+        }
+
+        .cc-name {
+          position: absolute;
+          left: 4%;
+          width: 50%;
+          top: 10%;
+        }
+
+        .cc-nickname {
+          position: absolute;
+          left: 58%;
+          width: 40%;
+          top: 10%;
+        }
+
+        .cc-number {
+          position: absolute;
+          left: 4%;
+          right: 4%;
+          width: 50%;
+          top: 30%;
+        }
+
+        .cc-zipcode {
+          position: absolute;
+          left: 58%;
+          right: 4%;
+          width: 40%;
+          top: 30%;
+        }
+
+        .exp-month {
+          position: absolute;
+          top: 50%;
+          width: 24%;
+          left: 4%;
+        }
+
+        .exp-year {
+          position: absolute;
+          top: 50%;
+          width: 23%;
+          left: 31%;
+        }
+
+        .cvc {
+          position: absolute;
+          top: 50%;
+          right: 27%;
+          width: 15%;
+        }
+
+      }
+    }
+  }
+}

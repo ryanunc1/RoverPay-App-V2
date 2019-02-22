@@ -1,0 +1,154 @@
+<ion-content>
+  <ion-slides pager="false">
+      <ion-slide class="first-slide">
+        <div class="row cc-cont">
+          <div class="col-60">
+            <div class="fake-cc">
+              <div class="img-cont">
+                <!--<img src="img/credit-card-background.svg"/>-->
+                <img src="assets/imgs/cc-bg.png" />
+                <img class="rover-blink" src="assets/imgs/Rover_Animate_300px.gif">
+              </div>
+              <p class="nickname">{{user?.paymentMethods[0]?.nickName}}</p>
+              <p class="name">{{user?.paymentMethods[0]?.cardholderName}}</p>
+              <p class="number">**** **** **** ****</p>
+              <p class="expiry">{{user?.paymentMethods[0]?.expDate | date:'MM/yy'}}</p>
+            </div>
+          </div>
+          <div class="col-40 update-payment-cont" (click)="openPayModal()">
+            <p>UPDATE PAYMENT</p>
+          </div>
+        </div>
+        <div class="lower-cont">
+          <p class="ready-text"><span class="check-this-out">Ready to check out?</span> Great. Let's get started.</p>
+          <p class="love-this">You are gonna love this.</p>
+          <p class="total-text"><span class="step">Step 1:</span> Please enter the total of the check.</p>
+          <p class="total-subtext">(Include tax, but not tip... we'll do that in a sec.)</p>
+          <div>
+            <input currencyMask class="total-input" (ngModelChange)="updateRewardPointsMessage()" type="tel" [(ngModel)]="checkAmount" placeholder="$ 0.00">
+          </div>
+          
+          <p class="next-tier" [hidden]="!(showNextTierMessage && differenceFromNextTier > 0)">
+            Pssst... if you spend {{differenceFromNextTier | currency}} more you will earn an additional {{nextTierRewardPoints - numRewardPointsFromTransaction}} reward points.
+          </p>
+          <button class="button next-btn button-balanced" (click)="toTip()">Next</button>
+        </div>
+        <div class="bottom-cont clearfix hide-on-keyboard-open">
+          <img class="bottom-rover" src="assets/imgs/Rover_Animate_300px.gif">
+          <button class="cancel" (click)="cancel()">CANCEL</button>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="tip-page">
+          <p class="message banner-top">You will earn <span class="num-reward-points">{{numRewardPointsFromTransaction}} reward points!</span>
+          </p>
+          <div class="page-container">
+            <p class="tip-question"><span class="step">Step 2:</span> Would you like to leave a tip?</p>
+            <div class="row tip-buttons tip-buttons-1">
+              <div class="col-50">
+                <button class="button tip-amount button-stable" [ngClass]="((tipPercent == 10) ? 'selected': '')" (click)="tipAmountClicked(10)"><span class="tip-percentage">10%</span>: {{checkAmount*.1 | currency}}</button>
+              </div>
+              <div class="col-50">
+                <button class="button tip-amount button-stable" [ngClass]="((tipPercent == 15) ? 'selected': '')" (click)="tipAmountClicked(15)"><span class="tip-percentage">15%</span>: {{checkAmount*.15 | currency}}</button>
+              </div>
+            </div>
+            <div class="row tip-buttons tip-buttons-2">
+              <div class="col-50">
+                <button class="button tip-amount button-stable" [ngClass]="((tipPercent == 20) ? 'selected': '')" (click)="tipAmountClicked(20)"><span class="tip-percentage">20%</span>: {{checkAmount*.2 | currency}}</button>
+              </div>
+              <div class="col-50">
+                <button class="button tip-amount button-stable" [ngClass]="((tipPercent == 25) ? 'selected': '')" (click)="tipAmountClicked(25)"><span class="tip-percentage">25%</span>: {{checkAmount*.25 | currency}}</button>
+              </div>
+            </div>
+            <div class="row tip-input-row">
+              <div class="col-50">
+                  <label class="custom-tip-label">Custom Tip:</label>
+              </div>
+              <div class="col-50">
+                <input currencyMask class="tip-input" (ngModelChange)="updateCustomTipPercent()" [(ngModel)]="customTipPercent" type="tel" placeholder="$ 0.00">
+              </div>
+            </div>
+            <div class="next-prev-buttons clearfix">
+              <button class="button next-btn back-btn button-stable" (click)="back()">Back</button>
+              <button class="button next-btn button-balanced" (click)="toPay()">Next</button>
+            </div>
+            <div class="bottom-cont clearfix hide-on-keyboard-open">
+              <img class="bottom-rover" src="assets/imgs/Rover_Animate_300px.gif">
+              <button class="cancel" (click)="cancel()">CANCEL</button>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide class="checkout-slide">
+          <p [hidden]="rewardPointsApplying > 0" class="message banner-top">You will earn <span class="num-reward-points">{{numRewardPointsFromTransaction | number}} reward points!</span>
+          </p>
+          <p [hidden]="!rewardPointsApplying > 0" class="message banner-top">Using rewards prevents earning more. ;)
+          </p>
+          <div class="page-container">
+            <p class="step-container"><span class="step">Last Step:</span> Give a quick check to make sure it all looks perfect.</p>
+            <div class="row checkout-amount">
+              <div class="col-60">
+                Check Amount:
+              </div>
+              <div class="col-40">
+                {{checkAmount | currency}}
+              </div>
+            </div>
+            <div class="row checkout-amount">
+              <div class="col-60">
+                Tip:
+              </div>
+              <div class="col-40">
+                {{finalTip | currency}}
+              </div>
+            </div>
+            <div class="row checkout-amount" [hidden]="!rewardPointsApplying">
+              <div class="col-60">
+                Rewards:
+              </div>
+              <div class="col-40">
+                {{-rewardPointsApplying/100 | currency }}
+              </div>
+            </div>
+            <div class="row checkout-amount total">
+              <div class="col-60">
+                <b>Total:</b>
+              </div>
+              <div class="col-40">
+                {{(checkAmount * 1 + finalTip * 1 - (rewardPointsApplying/100 || 0)) | currency}}
+              </div>
+            </div>
+          </div>
+          <div class="available-rewards-container clearfix" [hidden]="!(user.rewardPoints > 0)">
+            <p class="available-rewards-text" [hidden]="isApplying" >AVAILABLE REWARDS: <span class="number-rewards">{{user.rewardPoints | number}}</span></p>
+            <p class="how-many-points" [hidden]="!isApplying">How many points do you want to use?</p>
+            <button class="button apply-rewards next-btn button-energized" [hidden]="isApplying" (click)="showApplyRewardsInput()">Use Rewards</button>
+            <button class="button cancel-apply-rewards next-btn ng-hide button-stable" (click)="isApplying = false;rewardPointsApplying=0;" [hidden]="!isApplying">X</button>
+
+            <input type="number" id="rewards-applying-input" class="number-of-points" placeholder="{{user.rewardPoints}}" [(ngModel)]="rewardPointsApplying" [hidden]="!isApplying"
+            (ngModelChange)="rewardPointsApplyingChanged()">
+          </div>
+          <div class="page-container">
+            <div class="checkout-button-container clearfix">
+              <button class="button next-btn back-btn button-stable" (click)="back()">Back</button>
+              <button class="button checkout-button next-btn button-balanced" (click)="checkout()">Checkout</button>
+            </div>
+          </div>
+          <div class="bottom-cont clearfix hide-on-keyboard-open">
+            <img class="bottom-rover" src="assets/imgs/Rover_Animate_300px.gif">
+            <button class="cancel" (click)="cancel()">CANCEL</button>
+          </div>
+      </ion-slide>
+      <ion-slide class="payment-success">
+        <p class="high-fives">High Fives!</p>
+        <p class="done-message">You are all done, but before you go, please tell your server the following code word (or you could just write it
+          on the paper check)</p>
+        <p class="code-word">"{{successTrans?.alias}}"</p>
+        <button class="button close-wizard next-btn button-energized" (click)="goHome()">Close</button>
+
+        <img *ngIf="(pawInd === 0)" [src]="pawImage" class="paw-animate" (click)="getPawImg()"/>
+        <img *ngIf="(pawInd === 1)" [src]="pawImage" class="paw-animate" (click)="getPawImg()"/>
+        <img *ngIf="(pawInd === 2)" [src]="pawImage" class="paw-animate" (click)="getPawImg()"/>
+      </ion-slide>
+  </ion-slides>
+</ion-content>

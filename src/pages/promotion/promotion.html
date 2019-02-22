@@ -1,0 +1,52 @@
+<ion-content class="promotion-content">
+
+    <a class="buttoncls" small (click)="close()">
+        <ion-icon name="md-close"></ion-icon>
+    </a>
+
+    <div *ngIf="state === 'default'" class="promo-section animated zoomIn animate-duration-300">
+        <p class="promo-title">Promotions</p>
+        <p class="done-message"></p>
+        <button ion-button full class="promobtn" (click)="changeState('promocode')">Enter promo/referral code</button>
+        <button ion-button full class="promobtn" (click)="changeState('invitebuddy')">Invite your buddies</button>
+    </div>
+
+    <div *ngIf="state == 'promocode'" class="animated zoomIn animate-duration-300">
+        <p class="promo-title">Promotions</p>
+        <p class="promo-paragraph">Got a promotional or referral code? Great just enter it below and we will take care of the rest</p>
+    
+        <label class="item item-input promoinput">
+            <input type="text" [(ngModel)]="redeemCode"  placeholder="Enter code here!">
+        </label>
+
+        <p *ngIf="showMessage" class="code-word">{{message}}</p>
+
+        <img *ngIf="(showImage && pawInd === 0)" [src]="pawImage" class="paw-animate" (click)="getPawImg()"/>
+        <img *ngIf="(showImage && pawInd === 1)" [src]="pawImage" class="paw-animate" (click)="getPawImg()"/>
+        <img *ngIf="(showImage && pawInd === 2)" [src]="pawImage" class="paw-animate" (click)="getPawImg()"/>
+
+        <button ion-button class="button-clear backcls" (click)="changeState('default')">BACK</button>
+        <button ion-button class="button-energized applybtn" (click)="redeem()">Apply</button>
+    </div>
+
+    <div *ngIf="state === 'invitebuddy'" class="promo-section animated zoomIn animate-duration-300">
+        <p class="promo-title">Referrals</p>
+        <p class="done-message">
+            Invite your friends and get free stuff!!<br>
+            Your referral code is "{{referralCode}}"
+        </p>
+
+        <p class="promo-paragraph">
+            Ready to share the love of Rover? <b>Awesome!</b> <br/>For each friend you invite that creates an account you will get
+            {{configs?.referrer_amount / 100 | currency}} and they will get {{configs?.referree_amount/100 | currency}} in Rover bucks!
+        </p>
+
+        <p class="promo-paragraph">
+            Just click the button below to share with them by email, text, or your favorite social site.
+        </p>
+
+        <button ion-button full class="promobtn" (click)="inviteBuddies()">Share RoverPay!</button>
+        <button ion-button class="button-clear backcls" (click)="changeState('default')">BACK</button>
+    </div>
+
+</ion-content>

@@ -24,7 +24,7 @@ page-profile {
             margin-top: 0 !important;
         }
         .name-phone-container {   
-            background-image: url("/assets/imgs/profile-name-bg.png");
+            background-image: url("../assets/imgs/profile-name-bg.png");
             background-size: cover;
         }
 
@@ -45,6 +45,26 @@ page-profile {
                 margin: 2vh 0 2vh;
                 color: white !important;
                 font-size: 0.8em;
+
+                .modify-phone-input {
+                    width: 100%;
+                    padding: 5px;
+                    display: block;
+                    font-size: 18px;
+                    height: auto;
+                    background: none;
+                    color: white;
+                    border-bottom: 1px solid white;
+                    text-align: center;
+                }
+
+                input::placeholder {
+                    color: #fff;
+                }
+            }
+
+            .button-full {
+                margin: 0 !important;
             }
 
             .edit-button {
@@ -55,6 +75,26 @@ page-profile {
                 font-size: 0.8em;
                 top: 0;
                 padding: 5px;
+            }
+        }
+
+        .row.actions {
+            margin-top: 4.1vh;
+            .button.button-block, .button.button-full {
+                margin: 0;
+            }
+
+            .col {
+                padding: 0;
+            }
+
+            a.button {
+                border-bottom: 2px solid silver !important;
+                font-weight: 300;
+            }
+
+            a.button:first-child {
+                border-top: 2px solid silver;
             }
         }
 

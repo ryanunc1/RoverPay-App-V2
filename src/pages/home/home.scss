@@ -1,6 +1,47 @@
 page-home {
+    .button-balanced {
+        border-radius: 3px !important;
+        min-height: 40px !important;
+        border-bottom: 2px inset rgba(0, 0, 0, 0.4) !important;
+    }
 
+    a.button {
+        text-decoration: none;
+        font-weight: 300;
+    }
 
+    .button.button-block,
+    .button.button-full {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .button.button-balanced {
+        border-color: transparent;
+        background-color: #59b6b0;
+        color: #fff;
+    }
+
+    .button.button-balanced.activated,
+    .button.button-balanced.active {
+        border-color: #a2a2a2;
+        background: #439993;
+    }
+
+    .nofound.item {
+        border-color: #ddd;
+        background-color: #fff;
+        color: #444;
+        position: relative;
+        z-index: 2;
+        display: block;
+        margin: -1px;
+        padding: 16px;
+        border-width: 1px;
+        border-style: solid;
+        font-size: 16px;        
+    }
+    
     .card-background-page {
         ion-card {
             position: relative;
@@ -28,7 +69,7 @@ page-home {
                 position: absolute;
                 top: 10%;
                 right: 2vw;
-                background-image: url("/assets/imgs/star_default.svg");
+                background-image: url("../assets/imgs/star_default.svg");
                 background-size: cover;
                 width: 12vw;
                 height: 12vw;
@@ -38,8 +79,25 @@ page-home {
             }
 
             .always_on {
-                background-image: url("/assets/imgs/star_always_on.svg");
+                background-image: url("../assets/imgs/star_always_on.svg");
                 background-size: cover;
+            }
+        }
+
+        .list-error {
+            overflow: hidden;
+            margin: 20px 10px;
+            border-radius: 2px;
+            background-color: #fff;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            text-align: center;
+
+            .item {
+                p {
+                    font-size: 14px;
+                }
             }
         }
         

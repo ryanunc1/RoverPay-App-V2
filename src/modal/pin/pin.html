@@ -1,0 +1,40 @@
+<ion-content>
+  <a class="close" [hidden]="(state === 'paywizard')" ion-button small (click)="close()">
+    <ion-icon name="md-close"></ion-icon>
+  </a>
+  <div class="pin-dots">
+      <div class="pin-dots-inner">
+        <div [ngClass]="{filled: pinEntry.length > 0}"></div>
+        <div [ngClass]="{filled: pinEntry.length > 1}"></div>
+        <div [ngClass]="{filled: pinEntry.length > 2}"></div>
+        <div [ngClass]="{filled: pinEntry.length > 3}"></div>
+      </div>
+      <p>{{(pinMessage) ? pinMessage: 'Please enter your code'}}</p>
+  </div>
+  <div class="pin-entry-cont clearfix">
+    <div class="clearfix">
+      <div (click)="pinButtonClicked(1)">1</div>
+      <div (click)="pinButtonClicked(2)">2</div>
+      <div (click)="pinButtonClicked(3)">3</div>
+    </div>
+    <div>
+      <div (click)="pinButtonClicked(4)">4</div>
+      <div (click)="pinButtonClicked(5)">5</div>
+      <div (click)="pinButtonClicked(6)">6</div>
+    </div>
+    <div>
+      <div (click)="pinButtonClicked(7)">7</div>
+      <div (click)="pinButtonClicked(8)">8</div>
+      <div (click)="pinButtonClicked(9)">9</div>
+    </div>
+    <div>
+      <div></div>
+      <div (click)="pinButtonClicked(0)">0</div>
+      <div (click)="pinButtonClicked('backspace')"><ion-icon name="md-backspace"></ion-icon></div>
+    </div>
+  </div>
+  <div class="pin-bottom-buttons clearfix">
+      <p class="update-payment ng-hide" [hidden]="!(state === 'paywizard')" (click)="editPaymentMethod()">UPDATE PAYMENT</p>
+      <p class="close-pin-modal" [hidden]="!(state === 'paywizard')" (click)="cancelPinEntry()">CANCEL</p>
+    </div>
+</ion-content>

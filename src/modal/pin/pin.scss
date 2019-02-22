@@ -1,0 +1,108 @@
+modal-pin {
+  background: rgba(73, 115, 112, 0.78);
+
+  position: relative;
+
+  ion-content {
+    background: transparent !important;
+
+    .close {
+      background: transparent;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 400;
+      position: absolute;
+      right: 0;
+    }
+
+    .pin-dots {
+      width: 100%;
+      position: absolute;
+      top: 61px;
+      text-align: center;
+
+      p {
+        text-transform: uppercase;
+        color: white;
+        margin-top: 2px;
+        font-size: 14px;
+      }
+
+      .pin-dots-inner {
+        display: inline-block;
+
+        > div {
+          border: 2px solid white;
+          border-radius: 25px;
+          width: 4vw;
+          height: 4vw;
+          float: left;
+          margin: 1vh;
+        }
+
+        > div.filled {
+          background: white;
+        }
+      }
+    }
+
+    .pin-entry-cont {
+      position: absolute;
+      top: 130px;
+      left: 11vw;
+      width: 78vw;
+      box-shadow: 1px 3px 7px #4E4E4E;
+
+      > div {
+        width: 100%;
+        display: block;
+        margin: 0;
+        padding: 0;
+
+        > div {
+          width: 25.2vw;
+          height: 25.2vw;
+          margin: 0.35vw;
+          background: white;
+          float: left;
+          line-height: 26vw;
+          text-align: center;
+          font-size: 23px;
+          color: #3A8A84;
+          transition: .2s all;
+          font-weight: 200;
+        }
+      }
+    }
+
+    .pin-bottom-buttons {
+      bottom: 9px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+
+      p {
+        margin: 0 0 10px;
+        font-size: 14px;
+        display: inline-block;
+      }
+
+      .update-payment,
+      .close-pin-modal {
+        color: white;
+      }
+
+      .update-payment {
+        float: right;
+        margin-right: 14px;
+      }
+
+      .close-pin-modal {
+        float: left;
+        margin-left: 14px;
+      }
+    }
+
+  }
+}
