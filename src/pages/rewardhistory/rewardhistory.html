@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar hideBackButton end>
+      <a class="close" ion-button small (click)="close()">
+          <ion-icon name="md-close"></ion-icon>
+      </a>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="header clearfix">
+        <h2>History</h2>
+        <p>Current Points <span>{{user.rewardPoints}}</span></p>
+  </div>
+  <table>
+      <tr *ngFor="let transaction of transactions" (click)="showTransactionInfo(transaction)">
+        <td>{{transaction.createdAt | date:'MM/dd/yyyy'}}</td>
+        <td>{{venues[transaction.venue]?.title}}</td>
+        <td class="dollars-spent">{{transaction.total/100 | currency}}</td>
+        <td class="points" *ngIf="transaction.status === 'completed'">{{transaction.rewardPointsEarned | number}} pts</td>
+        <td class="points" *ngIf="transaction.status !== 'completed'">pending</td>
+      </tr>
+  </table>
+</ion-content>

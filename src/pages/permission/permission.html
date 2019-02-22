@@ -1,0 +1,76 @@
+<ion-content class="promocode-content" [ngClass]="getBg()">
+    <div *ngIf="data.state === 'welcome'" class="promo-section animated zoomIn animate-duration-300">
+      <p class="promoTitle">Welcome!</p>
+      <p class="promo-paragraph">Welcome to Rover Pay! We are gonna get you all setup and show you how the magic works so you can get the most out of Rover.</p>
+      <p class="promo-paragraph">Should only take a moment.<br/>Ok. Lets get going!</p>
+      <p class="promo-paragraph promo-bold">Do you have a promo or referral code?</p>
+      <button class="button button-full promobtn" (click)="data.state = 'push'; data.progressPercent = prog(2);">Nope.</button>
+      <button class="button button-full promobtn" (click)="data.state = 'promocode'; data.progressPercent = prog(1);">Yes, I do!</button>
+    </div>
+
+    <form *ngIf="data.state === 'promocode'" class="promo-section animated zoomIn animate-duration-300">
+      <p class="promoTitle">Enter Code</p>
+      <p class="promo-paragraph">Got a promotional or referral code? Great! Just enter it below and we will take care of the rest.</p>
+      <label class="item item-input promoinput">
+        <input type="text" name="promoCode" [(ngModel)]="data.promoCode" placeholder="Enter code here!">
+      </label>
+      <p class="code-word" *ngIf="data.showMessage">{{data.successMessage}}</p>
+
+      <img *ngIf="(data.showImg && pawInd === 0)" [src]="pawImage" class="paw-animate" (click)="getPawImg()"/>
+      <img *ngIf="(data.showImg && pawInd === 1)" [src]="pawImage" class="paw-animate" (click)="getPawImg()"/>
+      <img *ngIf="(data.showImg && pawInd === 2)" [src]="pawImage" class="paw-animate" (click)="getPawImg()"/>
+
+      <button class="button button-energized applybtn" (click)="redeem()">Apply</button>
+      <button class="button button-clear button-back backcls" type="button" (click)="data.state = 'welcome'; data.progressPercent = 0;">BACK</button>
+    </form>
+
+    <div *ngIf="data.state === 'push'" class="promo-section animated zoomIn animate-duration-300">
+      <p class="promoTitle">Notifications</p>
+      <p class="promo-paragraph">We promise to send you notifications only when your favorite restaurants are offering great deals.</p>
+      <p class="promo-paragraph promo-bold">May we send you push notifications?</p>
+      <button class="button button-full promobtn" (click)="disablePush()">I'd rather not.</button>
+      <button class="button button-full promobtn" (click)="enablePush()">Sure!</button>
+  </div>
+
+  <div [hidden]="!(data.state === 'location')" class="promo-section animated zoomIn animate-duration-300">
+    <p class="promoTitle">Location</p>
+    <p class="promo-paragraph">To show nearby venues that use Rover we need to know where you are. </p>
+    <p class="promo-paragraph">Security note: We do not store this information, nor do we track you while you use the app.</p>
+    <p class="promo-paragraph promo-bold">May we have your location?</p>
+    <button class="button button-full promobtn" (click)="disableLocation()">Nope.</button>
+    <button class="button button-full promobtn" (click)="enableLocation()">Sure!</button>
+  </div>
+
+  <div [hidden]="!(data.state === 'rewards')" class="promo-section animated zoomIn animate-duration-300">
+    <p class="promoTitle">Rewards!</p>
+    <p class="promo-paragraph">Rewarding you for using Rover Pay is what we are all about so we want to make it as easy as possible.</p>
+    <img src="assets/imgs/rewards.png">
+    <p class="promo-paragraph">See that star up there? That is visible on each venue that shows up on Rover’s home page. This means that if you go there right now, then you will get that percentage of your ticket per $10’s you spend.</p>
+    <p class="promo-paragraph">This will change depending on the time of day and other specials that the venue is running, so be sure to check often!</p>
+    <button class="button button-full-padding button-balanced" (click)="data.state = 'howto'; data.progressPercent = prog(5);">Got it!</button>
+  </div>
+
+  <div [hidden]="!(data.state === 'howto')" class="promo-section animated zoomIn animate-duration-300">
+    <p class="promoTitle">Tips</p>
+    <div class="row">
+      <div class="col">
+        <img src="assets/imgs/tips.png">
+      </div>
+      <div class="col">
+        <p class="promo-paragraph">Found a venue you want to visit? Just tap on it in the list and it will take you to a screen where you can learn more about the venue, as well as pay your check!</p>
+      </div>
+    </div>
+    <p class="promo-paragraph">Checkout is quick and painless. Your waiter never needs to see your credit card and you get rewards just for going to your favorite places!</p>
+    <button class="button button-full-padding button-balanced" (click)="data.state = 'payment'; data.progressPercent = prog(6);">Got it!</button>
+  </div>
+
+  <div [hidden]="!(data.state === 'payment')" class="promo-section animated zoomIn animate-duration-300">
+    <p class="promoTitle">Payment</p>
+    <p class="promo-paragraph">Last step! To get you in and out of your favorite places easy, we need to store your credit card.</p>
+    <p class="promo-paragraph">Card numbers are encrypted and protected with state of the art technology to make sure your information is safe.</p>
+    <p class="promo-paragraph">Not ready? No problem. You can setup your card in your profile at any time.</p>
+    <p class="promo-paragraph promo-bold">Would you like to setup payment?</p>
+    <button class="button button-full promobtn" (click)="close()">I'll do it later.</button>
+    <button class="button button-full promobtn" (click)="goToAddPayment()">Yes!</button>
+  </div>
+</ion-content>

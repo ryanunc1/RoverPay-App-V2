@@ -1,0 +1,90 @@
+page-favorite {
+  ion-header {
+    background: transparent !important;
+    border-bottom: 0 !important;
+    .close {
+        background-color: transparent;
+        color: white;
+        position: absolute;
+        right: 5px;
+        font-size: 17px;
+        font-weight: 800;
+        border: 0;
+    }
+  }
+
+  .header-ios .toolbar-ios:last-child .toolbar-background-ios {
+    border-width: 0 !important;
+  }
+
+  ion-content {
+    .scroll-content {
+      margin-top: 0 !important;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 2vh;
+
+      td {
+        padding: 6px 0;
+        font-size: 14px;
+        color: #444444;
+      }
+
+      td:first-child, td:last-child {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      td:first-child {
+        width: 70%;
+      }
+
+      .dollars-spent {
+        color: #3f9891;
+      }
+    }
+
+    tr {
+      border-bottom: 3px solid white;
+    }
+
+    tr:nth-child(odd) {
+      background: #f1f5f5;
+    }
+
+    tr:first-child {
+      background: none;
+    }
+
+    .header {
+      background: url("../assets/imgs/profile-name-bg.png");
+      background-size: cover;
+      height: 20vh;
+      position: relative;
+      width: 100%;
+
+      h2 {
+        text-align: center;
+        color: white;
+        font-family: Handlee;
+        margin-top: 7vh;
+        font-size: 33px;
+      }
+
+      .title-desc {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        line-height: 1;
+        padding: 0 10px;
+        margin: 0 0 10px;
+      }
+    }
+  }
+}

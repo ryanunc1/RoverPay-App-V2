@@ -19,17 +19,21 @@
         class="item-bg-img" 
         [style.background-image]="getBackgroundImage(venue.pictures[0])">
         <div class="item-overlay" [ngClass]="venue.style"></div>
+        <a class="directions button button-icon" (click)="getDirections(venue)"> 
+            <ion-icon name="ios-car"></ion-icon>
+            Directions</a>
         <div class="title item-text">
             <h2>{{venue.title}}</h2>
             <p class="description">{{venue.description}}</p>
         </div>
     </ion-card>
-    <div class="padding-5">
+    <div *ngIf="showDetails" class="padding-5 animated animate-duration-1000 bounceInRight">
         <div class="row">
             <div class="col col-center">
                 <span *ngFor="let tag of venue.tags" class="badge badge-tag badge-dark">{{tag}}</span>
                 <span class="like-button">
-                    <ion-icon name="ios-heart-outline"></ion-icon>
+                    <ion-icon *ngIf="!venue.isFavorite" name="ios-heart-outline" (click)="addFavorite()"></ion-icon>
+                    <ion-icon *ngIf="venue.isFavorite" name="ios-heart" (click)="removeFavorite()"></ion-icon>
                 </span>
             </div>
         </div>
@@ -51,7 +55,7 @@
         </div>
         <div class="row paybutton-div">
             <div class="col col-center">
-                <button class="button button-block button-energized">Pay & Use Rewards</button>
+                <button class="button button-block button-energized" (click)="gotoPayWizard()">Pay & Use Rewards</button>
             </div>
         </div>
     </div>

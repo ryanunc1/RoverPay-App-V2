@@ -1,31 +1,72 @@
-export interface User extends Profile {
-    readonly userId;
-    readonly username;
-    readonly token;
-    firstName: string;
+export interface User {
+  userId: string;
+  username: string;
+  token: string;
+  firstName: string;
+  lastName: string;
 
-    login(username: string, password: string, callback: () => void);
+  active: boolean;
+  createdAt: any;
+  deviceTokens: any;
+  favorites: any;
+  paymentMethods: any;
+  phone: string;
+  photo: string;
+  referralCode: string;
+  rewardPoints: number;
+  roles: any;
+  socialProfiles: any;
+  transactions: any;
+  updateAt: any;
+  validate: boolean;
 
-    signup(username:string, password: string, firstName: string, callback: (result: any) => void);
+  login(username: string, password: string, callback: () => void);
 
-    getToken(callback: () => {});
+  signup(username:string, password: string, firstName: string, callback: (result: any) => void);
 
-    setToken(token: string, callback: () => void);
+  getToken();
 
-    getAllVenue(callback: (data: any) => void);
+  setToken(token: string);
 
-    setUser(user: string);
+  removeStorage();
+  
+  setUser(user: string);
+  
+  getUser();
 
-    getUser(callback: (data: any) => void);
+  updateProfile(id: string, email: string, callback: (result: any) => void);
 
-    profile: Profile;
-}
+  updateName(id: string, firstName: string, lastName: string, callback: (result: any) => void);
 
-export interface Profile {
+  updatePassword(password: string, callback: (result: any) => void);
 
-    readonly userId: string;
-    readonly username: string;
-    firstName: string;
+  addFavorite(venueId: string, callback: (result: any) => void);
 
-    updateDetails(callback: () => void);
+  removeFavorite(venueId, string, callback: (result: any) => void);
+
+  getReferralCode(callback: (result: any) => void);
+  
+  removeObjectFunc(this);
+
+  addPin(pinCode: string, callback: (result: any) => void);
+
+  payeezyTokenizeCard(ccData: any, callback: (result: any) => void);
+
+  forgotPassword(username: string, callback: (result: any) => void);
+
+  changePassword(changePasswordData: any, callback: (result: any) => void);
+
+  enablePush();
+  
+  save(this);
+
+  me(callback: (result: any) => void);
+
+  logout();
+
+  isLocationEnabled();
+
+  isPushNotifEnabled();
+
+  enableLocation();
 }

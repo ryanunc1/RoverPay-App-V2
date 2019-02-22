@@ -1,0 +1,56 @@
+<ion-content>
+  <div class="page-content">
+    <div *ngIf="user.paymentMethods && user.paymentMethods.length > 0">
+      <div class="fake-cc">
+        <div class="img-cont">
+          <img src="assets/imgs/cc-bg.png" />
+          <img class="rover-blink" src="assets/imgs/Rover_Animate_300px.gif">
+        </div>
+        <p class="nickname">{{user.paymentMethods[0].nickName}}</p>
+        <p class="name">{{user.paymentMethods[0].cardholderName}}</p>
+        <p class="number">**** **** **** ****</p>
+        <p class="expiry">{{user.paymentMethods[0].expDate | date:'MM/yy'}}</p>
+      </div>
+    </div>
+
+    <form name="payment_form" *ngIf="user.paymentMethods && user.paymentMethods.length === 0">
+      <div [formGroup]="paymentForm" class="fake-cc">
+        <div class="img-cont">
+          <img src="assets/imgs/cc-bg.png"/>
+          <img class="rover-blink" src="assets/imgs/Rover_Animate_300px.gif"/>
+        </div>
+
+        <input type="text" class="cc-name" [ngClass]="((name.invalid && !name.pristine) ? 'invalid': '')" formControlName="name" name="cardName" placeholder="Cardholder Name">
+        <input type="text" class="cc-nickname" [ngClass]="((nickname.invalid && !nickname.pristine) ? 'invalid': '')" formControlName="nickname" name="cardNickname" placeholder="Nick Name">
+        <input type="text" class="cc-number" [ngClass]="((creditCard.invalid && !creditCard.pristine) ? 'invalid': '')" formControlName="creditCard" name="cardNumber" placeholder="Credit Card Number" ccNumber>
+        <input type="text" class="cc-zipcode" [ngClass]="((zipcode.invalid && !zipcode.pristine) ? 'invalid': '')" formControlName="zipcode" name="zipCode" placeholder="Zip Code">
+        <input type="text" class="exp-month" [ngClass]="((expirationMonth.invalid && !expirationMonth.pristine) ? 'invalid': '')" formControlName="expirationMonth" name="month" placeholder="Month">
+        <input type="text" class="exp-year" [ngClass]="((expirationYear.invalid && !expirationYear.pristine) ? 'invalid': '')" formControlName="expirationYear" pattern="[0-9]*" name="month" placeholder="Year">
+        <input type="text" class="cvc" [ngClass]="((cvc.invalid && !cvc.pristine) ? 'invalid': '')" formControlName="cvc" name="cvc" placeholder="CVC">
+      </div>
+      <p>
+        We need your credit card information to make paying at your favorite locations simple and easy. We'll only charge you when you ask us to and your information is stored securely.
+      </p>
+      <div [hidden]="pinCode">
+        <h3>Rover Security Code</h3>
+        <p>To prevent others from using your card, the Rover Security Code is required before each transaction.</p>
+        <div class="pin-container">
+          <button class="button button-darkgreen enter-pin-button" (click)="showPinModal()">Next: Add Code</button>
+        </div>
+      </div>
+    </form>
+    <div class="bottom-buttons clearfix">
+      <button class="cancel" (click)="close()">Cancel</button>
+      <button [hidden]="!pinCode" class="add-cc" 
+              type="submit" 
+              (click)="savePayment()" 
+              [disabled]="(name.invalid || nickname.invalid || 
+                          creditCard.invalid || zipcode.invalid || expirationMonth.invalid ||
+                          expirationYear.invalid || cvc.invalid)">
+          Save Payment
+      </button>
+      <button class="button button-stable delete-card" type="submit" (click)="deleteCC()" *ngIf="user.paymentMethods && user.paymentMethods.length > 0">Delete Payment</button>
+      <button class="button button-stable delete-card reset-pin" type="submit" (click)="resetPin()" *ngIf="user.paymentMethods && user.paymentMethods.length > 0">Reset Pin</button>
+    </div>
+  </div>
+</ion-content>

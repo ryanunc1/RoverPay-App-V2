@@ -20,9 +20,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     padding: 0;
     border: 0;
     vertical-align: baseline;
-    font: inherit;
     font-size: 100%;
     line-height: 20px;
+}
+
+html, body, .ionic-body {
+    font-family: Roboto;
 }
 
 .row {
@@ -37,7 +40,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 ion-nav.main {
-    background-image: url("/assets/imgs/roverhome.jpg");
+    background-image: url("../assets/imgs/roverhome.jpg");
 }
 
 .ios .ion-page.show-page ~ .nav-decor {
@@ -102,6 +105,12 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
     font-size: 16px;
     line-height: 42px;
     cursor: pointer;
+
+    &.activated,
+    &.active {
+        border-color: #a2a2a2;
+        background-color: #e5e5e5;
+    }
 }
 
 .button-block:after {
@@ -199,6 +208,11 @@ a.button .icon:before, a.button.icon:before, a.button.icon-left:before, a.button
     color: #fff;
 }
 
+.button.button-positive.activated {
+    border-color: #a2a2a2;
+    background-color: #cb7403;
+}
+
 button[disabled], html input[disabled] {
     cursor: default;
 }
@@ -228,6 +242,32 @@ button[disabled], html input[disabled] {
     background-color: #e45804;
 }
 
+.settings.activated, .settings.active {
+    border-color: #a2a2a2;
+    background-color: #e5e5e5;
+    border-left: 0;
+    border-right: 0;
+}
+
+.button-stable {
+    border-radius: 3px !important;
+    min-height: 40px !important;
+    border-bottom: 2px inset rgba(0, 0, 0, 0.4) !important;
+}
+
+.button.button-stable {
+    border-color: transparent;
+    background-color: #ddd;
+    color: #444;
+
+    &.active,
+    &.activated {
+        border-color: #a2a2a2;
+        background-color: #e5e5e5;
+    }
+}
+
+
 
 // grid
 
@@ -253,6 +293,36 @@ button[disabled], html input[disabled] {
     -ms-flex: 0 0 33.3333%;
     flex: 0 0 33.3333%;
     max-width: 33.3333%;
+}
+
+.col-40 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 40%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 40%;
+    -ms-flex: 0 0 40%;
+    flex: 0 0 40%;
+    max-width: 40%;
+}
+
+.col-50 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 50%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.col-60 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 60%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 60%;
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
+    max-width: 60%;
 }
 
 .col-80 {
@@ -282,6 +352,22 @@ button[disabled], html input[disabled] {
     display: block;
     padding: 5px;
     width: 100%;
+}
+
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+    width: 100%;
+}
+
+.row + .row {
+    margin-top: -5px;
+    padding-top: 0;
 }
 
 //loading
@@ -331,8 +417,18 @@ ion-action-sheet.roverpay-actionsheet {
 }
 
 // Alert
+
+ion-alert.alert-top {
+    align-items: center;
+}
+
+
 .alert-ios.rover-alert-class, 
-ion-alert.rover-alert-class {
+ion-alert.rover-alert-class,
+.alert-ios.resetpin-alert-class, 
+ion-alert.resetpin-alert-class,
+.alert-ios.ccpayment-alert-class,
+ion-alert.ccpayment-alert-class {
 
     .alert-wrapper {
         border-radius: 0px;
@@ -364,8 +460,68 @@ ion-alert.rover-alert-class {
                 min-height: 40px !important;
                 border-bottom: 2px inset rgba(0, 0, 0, 0.4) !important;
             }
+
+            .alert-cancel-button, .alert-save-button {
+                border-radius: 3px !important;
+                min-height: 40px !important;
+                border-bottom: 2px inset rgba(0, 0, 0, 0.4) !important;
+                border-color: transparent;
+                background-color: #ddd;
+                color: #444;
+                position: relative;
+                display: inline-block;
+                margin: 0;
+                padding: 0 12px;
+                min-width: 52px;
+                min-height: 47px;
+                border-width: 1px;
+                border-style: solid;
+                border-radius: 4px;
+                vertical-align: top;
+                text-align: center;
+                text-overflow: ellipsis;
+                font-size: 16px;
+                line-height: 42px;
+                cursor: pointer;
+                margin-right: 5px;
+            }
+
+            .alert-save-button {
+                border-color: transparent;
+                background-color: #59b6b0;
+                color: #fff;
+            }
+
+            .alert-ok-button {
+                border-color: transparent;
+                background-color: #fb9006;
+                color: #fff;
+                margin-right: 0;
+            }
+
+            .alert-ok-button.activated {
+                border-color: #a2a2a2;
+                background-color: #cb7403;
+            }
+
+            .alert-save-button.activated {
+                border-color: #a2a2a2;
+                background-color: #439993;
+            }
+
+            .alert-cancel-button.activated {
+                border-color: #a2a2a2;
+                background-color: #e5e5e5;
+            }
         }
 
+    }
+}
+
+.alert-ios.ccpayment-alert-class,
+ion-alert.ccpayment-alert-class {
+    .alert-wrapper .alert-message {
+        display: none;
     }
 }
 
@@ -658,56 +814,97 @@ ion-header {
     padding: 5px;
 }
 
+//clearfix 
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix, .clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+
+//multi background
+.multi-bg-outer {
+    position: relative;
+    background-color: rgba(230, 230, 230, 0.7);
+    -webkit-transition: all ease-in-out 0.3s;
+    transition: all ease-in-out 0.3s;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+//animation 
+.animate-duration-100 {
+    animation-duration: 100ms !important;
+}
+
+.animate-duration-300 {
+    animation-duration: 300ms !important;
+}
+
+.animate-duration-1000 {
+    animation-duration: 1000ms !important;
+}
+
+//margins
+
+.nomargin-bottom {
+    margin-bottom: 0 !important;
+}
+
 //fonts
 
 /* This stylesheet generated by Transfonter (http://transfonter.org) on March 14, 2016 3:44 PM */
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('/assets/fonts/Roboto-MediumItalic.eot');
-	src: url('/assets/fonts/Roboto-MediumItalic.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Roboto-MediumItalic.woff') format('woff'),
-		url('/assets/fonts/Roboto-MediumItalic.ttf') format('truetype');
+	src: url('../assets/fonts/Roboto-MediumItalic.eot');
+	src: url('../assets/fonts/Roboto-MediumItalic.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Roboto-MediumItalic.woff') format('woff'),
+		url('../assets/fonts/Roboto-MediumItalic.ttf') format('truetype');
 	font-weight: 500;
 	font-style: italic;
 }
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('/lib/ionic/fonts/Roboto-Black.eot');
-	src: url('/assets/fonts/Roboto-Black.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Roboto-Black.woff') format('woff'),
-		url('/assets/fonts/Roboto-Black.ttf') format('truetype');
+	src: url('../lib/ionic/fonts/Roboto-Black.eot');
+	src: url('../assets/fonts/Roboto-Black.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Roboto-Black.woff') format('woff'),
+		url('../assets/fonts/Roboto-Black.ttf') format('truetype');
 	font-weight: 900;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Handlee';
-	src: url('/assets/fonts/Handlee-Regular.eot');
-	src: url('/assets/fonts/Handlee-Regular.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Handlee-Regular.woff') format('woff'),
-		url('/assets/fonts/Handlee-Regular.ttf') format('truetype');
+	src: url('../assets/fonts/Handlee-Regular.eot');
+	src: url('../assets/fonts/Handlee-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Handlee-Regular.woff') format('woff'),
+		url('../assets/fonts/Handlee-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('/assets/fonts/Roboto-BlackItalic.eot');
-	src: url('/assets/fonts/Roboto-BlackItalic.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Roboto-BlackItalic.woff') format('woff'),
-		url('/assets/fonts/Roboto-BlackItalic.ttf') format('truetype');
+	src: url('../assets/fonts/Roboto-BlackItalic.eot');
+	src: url('../assets/fonts/Roboto-BlackItalic.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Roboto-BlackItalic.woff') format('woff'),
+		url('../assets/fonts/Roboto-BlackItalic.ttf') format('truetype');
 	font-weight: 900;
 	font-style: italic;
 }
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('/assets/fonts/Roboto-Medium.eot');
-	src: url('/assets/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Roboto-Medium.woff') format('woff'),
-		url('/assets/fonts/Roboto-Medium.ttf') format('truetype');
+	src: url('../assets/fonts/Roboto-Medium.eot');
+	src: url('../assets/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Roboto-Medium.woff') format('woff'),
+		url('../assets/fonts/Roboto-Medium.ttf') format('truetype');
 	font-weight: 500;
 	font-style: normal;
 }
@@ -734,30 +931,30 @@ ion-header {
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('/assets/fonts/Roboto-Regular.eot');
-	src: url('/assets/fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Roboto-Regular.woff') format('woff'),
-		url('/assets/fonts/Roboto-Regular.ttf') format('truetype');
+	src: url('../assets/fonts/Roboto-Regular.eot');
+	src: url('../assets/fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Roboto-Regular.woff') format('woff'),
+		url('../assets/fonts/Roboto-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('/assets/fonts/Roboto-Italic.eot');
-	src: url('/assets/fonts/Roboto-Italic.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Roboto-Italic.woff') format('woff'),
-		url('/assets/fonts/Roboto-Italic.ttf') format('truetype');
+	src: url('../assets/fonts/Roboto-Italic.eot');
+	src: url('../assets/fonts/Roboto-Italic.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Roboto-Italic.woff') format('woff'),
+		url('../assets/fonts/Roboto-Italic.ttf') format('truetype');
 	font-weight: normal;
 	font-style: italic;
 }
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('/assets/fonts/Roboto-Bold.eot');
-	src: url('/assets/fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Roboto-Bold.woff') format('woff'),
-		url('/assets/fonts/Roboto-Bold.ttf') format('truetype');
+	src: url('../assets/fonts/Roboto-Bold.eot');
+	src: url('../assets/fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Roboto-Bold.woff') format('woff'),
+		url('../assets/fonts/Roboto-Bold.ttf') format('truetype');
 	font-weight: bold;
 	font-style: normal;
 }
@@ -774,20 +971,20 @@ ion-header {
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('/assets/fonts/Roboto-Thin.eot');
-	src: url('/assets/fonts/Roboto-Thin.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Roboto-Thin.woff') format('woff'),
-		url('/assets/fonts/Roboto-Thin.ttf') format('truetype');
+	src: url('../assets/fonts/Roboto-Thin.eot');
+	src: url('../assets/fonts/Roboto-Thin.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Roboto-Thin.woff') format('woff'),
+		url('../assets/fonts/Roboto-Thin.ttf') format('truetype');
 	font-weight: 100;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Roboto';
-	src: url('/assets/fonts/Roboto-Light.eot');
-	src: url('/assets/fonts/Roboto-Light.eot?#iefix') format('embedded-opentype'),
-		url('/assets/fonts/Roboto-Light.woff') format('woff'),
-		url('/assets/fonts/Roboto-Light.ttf') format('truetype');
+	src: url('../assets/fonts/Roboto-Light.eot');
+	src: url('../assets/fonts/Roboto-Light.eot?#iefix') format('embedded-opentype'),
+		url('../assets/fonts/Roboto-Light.woff') format('woff'),
+		url('../assets/fonts/Roboto-Light.ttf') format('truetype');
 	font-weight: 300;
 	font-style: normal;
 }

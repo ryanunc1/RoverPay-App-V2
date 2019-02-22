@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar hideBackButton end>
+      <a class="close" ion-button small (click)="close()">
+          <ion-icon name="md-close"></ion-icon>
+      </a>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="header clearfix">
+        <h2>Favorites</h2>
+        <p class="title-desc">We will let you know when your favorite places are running specials.</p>
+  </div>
+  <table>
+      <tr>
+          <td></td>
+          <td>Total Spent</td>
+      </tr>
+      <tr *ngFor="let favorite of favorites">
+          <td (click)="navigateToDetailPage(favorite)">{{favorite.title}}</td>
+          <td class="dollars-spent">{{favorite.totalSpent | currency}}</td>
+      </tr>
+  </table>
+</ion-content>
