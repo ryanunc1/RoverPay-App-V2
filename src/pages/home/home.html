@@ -29,7 +29,7 @@
     (click)="gotoDetailPage(venue)">
     <div class="item-overlay" [ngClass]="venue.style"></div>
     <p class="item-reward animated animate-duration-1000 bounceInDown" [ngClass]="{'always_on': (venue.campaignToDisplay.filter === 'always_on')}"
-    *ngIf="venue.campaigns.length">{{venue.campaignToDisplay.rewardLevel}}%</p>
+    *ngIf="venue.campaigns?.length">{{venue.campaignToDisplay.rewardLevel}}%</p>
     <h2 class="title item-text">{{venue.title}}</h2>
   </ion-card>
   <div class="card list-error" [hidden]="isLoading || venues.length > 0">

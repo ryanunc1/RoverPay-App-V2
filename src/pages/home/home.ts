@@ -98,12 +98,31 @@ export class HomePage {
 
       this.venueModel.getAllVenue(query, (response) => {
         loading.dismiss();
-        this.isLoading = false;
         console.log("LOcation");
         console.log(response);
         if(refresher) refresher.complete();
         if(response && response.code === "OK") {
+
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 500);
           this.venues = response.data;
+          _.each(this.venues, (venue: any) => {
+            if(!venue.campaigns) {
+              this.venueModel.getVenueById(venue.id, (result) => {
+                venue.campaigns = result.data.venue.campaigns;
+                venue.campaigns = _.sortBy(venue.campaigns, (campaign: any) => {
+                  return campaign.rewardLevel * -1;
+                });
+                this.processCampaign(venue);
+              });
+            } else {
+              venue.campaigns = _.sortBy(venue.campaigns, (campaign: any) => {
+                return campaign.rewardLevel * -1;
+              });
+              this.processCampaign(venue);
+            }
+          })
         } else {
           this.venues = [];
         }
