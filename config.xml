@@ -91,5 +91,9 @@
     <plugin name="cordova-plugin-geolocation" spec="~2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Get your location" />
     </plugin>
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>We use your location for full functionality of certain app features.</string>
+    </edit-config>
     <engine name="android" spec="~5.2.2" />
+    <engine name="ios" spec="~4.2.1" />
 </widget>
