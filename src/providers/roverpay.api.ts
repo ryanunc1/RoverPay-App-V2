@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Platform } from 'ionic-angular'
+import { HTTP } from '@ionic-native/http';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -13,7 +15,9 @@ import * as config from '../config/payeezy';
   and Angular DI.
 */
 
-const APIURL = 'https://roverpay-api-dev.herokuapp.com/v1/';
+//const APIURL = 'https://roverpay-api-dev.herokuapp.com/v1/';
+const APIURL = 'https://api.roverpayapp.com/v1/'
+// const APIURL = 'http://192.168.254.106:3000/v1/';
 
 @Injectable()
 export class APIProvider {
@@ -22,7 +26,9 @@ export class APIProvider {
 	private storage: Storage;
 
   private token: any = "";
-  constructor(public http: HttpClient) {
+	constructor(public httpClient: HttpClient,
+							public platform: Platform,
+							public http: HTTP) {
 
 			this.token = "";
 			this.storage = window.localStorage;
@@ -53,13 +59,27 @@ export class APIProvider {
   }
 
   signup(username:string, password: string, firstName: string, phone: string, callback: (result: any) => void) {
-    let data = {
-      "email": username,
-      "firstName": firstName,
-      "password": password,
-      "phone": phone,
-      "username": username
-    }
+		
+		let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+		let data;
+		console.log("is email? " + re.test(username));
+		if(re.test(username)) {
+			data = {
+				"email": username,
+				"firstName": firstName,
+				"password": password,
+				"phone": phone,
+				"username": username
+			}
+		} else {
+			data = {
+				"firstName": firstName,
+				"password": password,
+				"phone": username,
+				"username": username
+			}
+		}
 
     this.callAPI('auth/signup', data, "post", (result) => {
       callback(result);
@@ -80,11 +100,23 @@ export class APIProvider {
 		})
 	}
 
-  updateProfile(id: string, email: string, callback: (result: any) => void) {
+  updateProfile(id: string, emailOrNumber: string, callback: (result: any) => void) {
 		if(!this.token) this.token = this.getToken();
-		let data = {
-			"id": id,
-			"email": email
+
+		let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		let data;
+
+		if(re.test(emailOrNumber)) {
+			data = {
+				"id": id,
+				"email": emailOrNumber
+			}
+		} else {
+			data = {
+				"id": id,
+				"phone": emailOrNumber,
+				"username": emailOrNumber
+			}
 		}
 
 		this.callAPI('users/updateProfile', data, "post", (result) => {
@@ -200,7 +232,7 @@ export class APIProvider {
 		queryString = queryString.replace(" ", "+");
 		url += queryString;
 
-		this.http.jsonp(`${url}`, 'callback')
+		this.httpClient.jsonp(`${url}`, 'callback')
 			.map(res => res)
 			.subscribe(
 				dataResponse => { console.log("payzeezy response"); console.log(dataResponse); callback(dataResponse); },
@@ -247,32 +279,94 @@ export class APIProvider {
 
   private callAPI(endpoint: string, data: any, callType: any, callback: (result: any | null) => void) {
 
-		const headers = new HttpHeaders()
-										.set("Content-Type", "application/json")
-										.set("Accepts", "application/json")
-										.set("Authorization", "JWT " + this.token)
-		
-    if(callType === "post") {
-      this.http.post(APIURL + endpoint, data, {headers})
-      .map(res => res)
-      .subscribe(
-        dataResponse => { console.log("response"); console.log(dataResponse); callback(dataResponse); },
-        errResponse => { callback(errResponse.error); }
-			);
-		} else if (callType === "put") {
-			this.http.put(APIURL + endpoint, data, {headers})
-      .map(res => res)
-      .subscribe(
-        dataResponse => { console.log("response"); console.log(dataResponse); callback(dataResponse); },
-        errResponse => { callback(errResponse.error); }
-			);
-		} else if(callType === "get") {
-			this.http.get(APIURL + endpoint, {headers})
-      .map(res => res)
-      .subscribe(
-        dataResponse => { console.log("response"); console.log(dataResponse); callback(dataResponse); },
-        errResponse => { callback(errResponse.error); }
-      );
-    }
+		if(this.platform.is('ios') && this.platform.is('cordova')) {
+			console.log("THIS IS IOS DEVICE")
+			
+			this.http.setSSLCertMode('nocheck');
+			this.http.setHeader('*', 'Access-Control-Allow-Origin' , '*');
+			this.http.setHeader('*', 'Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+			this.http.setHeader('*', 'Accept','application/json');
+			this.http.setHeader('*', 'content-type','application/json');
+			this.http.setHeader("*", "Content-Type", "application/json");
+			this.http.setHeader("*", "Accepts", "application/json",);
+			this.http.setHeader("*", "Authorization", "JWT " + this.token);
+			this.http.setDataSerializer('json');
+
+			const headers = new HttpHeaders({
+					"Content-Type": "application/json",
+					"Accepts": "application/json",
+					"Authorization": "JWT " + this.token
+				});
+
+			console.log("IOS Headers");
+			console.log(headers)
+
+			if(callType === "post") {
+				this.http.post(APIURL + endpoint, data, {})
+				.then((dataResponse) => {
+					console.log("POST RESPONSE");
+					console.log(JSON.parse(dataResponse.data));
+					callback(JSON.parse(dataResponse.data));
+				})
+				.catch((errResponse) => {
+					console.log("POST ERROR RESPONSE");
+					console.log(errResponse);
+					callback(errResponse);
+				})
+			} else if(callType === "put") {
+				this.http.put(APIURL + endpoint, data, {})
+				.then((dataResponse) => {
+					console.log("PUT RESPONSE");
+					console.log(JSON.parse(dataResponse.data));
+					callback(JSON.parse(dataResponse.data));
+				})
+				.catch((errResponse) => {
+					console.log("PUT ERROR RESPONSE");
+					console.log(errResponse);
+					callback(errResponse);
+				})
+			} else if(callType === "get") {
+				this.http.get(APIURL + endpoint, data, {})
+				.then((dataResponse) => {
+					console.log("GET RESPONSE");
+					console.log(JSON.parse(dataResponse.data));
+					callback(JSON.parse(dataResponse.data));
+				})
+				.catch((errResponse) => {
+					console.log("GET ERROR RESPONSE");
+					console.log(errResponse);
+					callback(errResponse);
+				})
+			}
+
+		} else {
+			const headers = new HttpHeaders()
+											.set("Content-Type", "application/json")
+											.set("Accepts", "application/json")
+											.set("Authorization", "JWT " + this.token)
+
+			if(callType === "post") {
+				this.httpClient.post(APIURL + endpoint, data, {headers})
+				.map(res => res)
+				.subscribe(
+					dataResponse => { console.log("response"); console.log(dataResponse); callback(dataResponse); },
+					errResponse => { callback(errResponse.error); }
+				);
+			} else if (callType === "put") {
+				this.httpClient.put(APIURL + endpoint, data, {headers})
+				.map(res => res)
+				.subscribe(
+					dataResponse => { console.log("response"); console.log(dataResponse); callback(dataResponse); },
+					errResponse => { callback(errResponse.error); }
+				);
+			} else if(callType === "get") {
+				this.httpClient.get(APIURL + endpoint, {headers})
+				.map(res => res)
+				.subscribe(
+					dataResponse => { console.log("response"); console.log(dataResponse); callback(dataResponse); },
+					errResponse => { callback(errResponse.error); }
+				);
+			}
+		}
   }
 }

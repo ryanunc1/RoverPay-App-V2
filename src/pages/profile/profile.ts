@@ -134,7 +134,7 @@ export class ProfilePage {
                 this.user.save();
                 let alert = this.alertCtrl.create({
                     title: 'Success',
-                    message: 'Successfully update your email',
+                    message: 'Successfully update your username',
                     buttons: ["OK"],
                     cssClass: 'rover-alert-class'
                 });
@@ -142,7 +142,7 @@ export class ProfilePage {
 
             } else {
                 let alert = this.alertCtrl.create({
-                    title: 'Error changing email',
+                    title: 'Error changing username',
                     message: 'Bad Request',
                     buttons: ["OK"],
                     cssClass: 'rover-alert-class'

@@ -8,6 +8,7 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Facebook } from '@ionic-native/facebook';
 import { Geolocation } from '@ionic-native/geolocation';
+import { HTTP } from '@ionic-native/http';
 
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { CurrencyMaskModule } from "ng2-currency-mask";
@@ -35,6 +36,14 @@ import { User,
         Promocodes,
         PaymentMethods } from '../implementation/roverpay.impl';
 
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+//prod
+const config = { url: 'https://roverpay-socket-server.herokuapp.com/', options: {} };
+
+//local
+// const config = { url: 'http://192.168.254.100:3000', options: {} };
+
 @NgModule({
   declarations: [
     MyApp,
@@ -61,7 +70,8 @@ import { User,
     IonicModule.forRoot(MyApp, {
       mode: 'ios'
     }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    SocketIoModule.forRoot(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,7 +102,8 @@ import { User,
     PaymentMethods,
     SocialSharing,
     Facebook,
-    Geolocation
+    Geolocation,
+    HTTP
   ]
 })
 export class AppModule {}

@@ -50,7 +50,7 @@ export class Walkthrough {
 
     this.signUpForm = new FormGroup({
       'firstName': new FormControl(this.user.firstName, [Validators.required]),
-      'username': new FormControl(this.user.username, [Validators.required, Validators.email]),
+      'username': new FormControl(this.user.username, [Validators.required]),
       'password': new FormControl(this.validatedPassword, [Validators.minLength(8)])
     });
 

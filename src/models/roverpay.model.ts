@@ -69,4 +69,6 @@ export interface User {
   isPushNotifEnabled();
 
   enableLocation();
+
+  getSocketData(this);
 }

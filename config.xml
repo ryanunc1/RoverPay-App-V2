@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.roverpay2" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.roverpay" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>RoverPay</name>
-    <description>An awesome Ionic/Cordova app.</description>
+    <description>Restaurant Payment App</description>
     <author email="narrasoft.ph@narrasoft.com" href="https://narrasoft.com/">Narrasoft Inc.</author>
     <content src="index.html" />
     <access origin="*" />
@@ -92,8 +92,15 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Get your location" />
     </plugin>
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
-        <string>We use your location for full functionality of certain app features.</string>
+        <string>Get Position</string>
     </edit-config>
-    <engine name="android" spec="~5.2.2" />
+    <edit-config file="*-Info.plist" mode="merge" target="NSLocationAlwaysUsageDescription">
+        <string>Get position</string>
+    </edit-config>
+    <plugin name="cordova-plugin-advanced-http" spec="~2.0.5">
+        <variable name="OKHTTP_VERSION" value="3.10.0" />
+    </plugin>
     <engine name="ios" spec="~4.2.1" />
+    <plugin name="cordova-plugin-file" spec="~4.3.3" />
+    <engine name="android" spec="~5.2.2" />
 </widget>

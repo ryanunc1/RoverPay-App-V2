@@ -126,7 +126,8 @@ export class User implements model.User {
     }
 
     removeStorage() {
-        this.storage.clear();
+        this.storage.removeItem("auth-token");
+        this.storage.removeItem("user");
         this.clear();
     }
 
@@ -277,6 +278,16 @@ export class User implements model.User {
         }
 
         this.storage.setItem('user', JSON.stringify(userData));
+    }
+
+    getSocketData(this) {
+        let user = {
+            "username": this.username,
+            "id": this.userId,
+            "fullname": this.firstName + " " + this.lastName
+        }
+
+        return user;
     }
 
     private clear() {

@@ -21,9 +21,9 @@
                     <span [hidden]="isEdit" class="phone-number">
                         <a href="#">{{email}}</a>
                     </span>
-                    <input [hidden]="!isEdit" type="email" [(ngModel)]="email" class="modify-phone-input" placeholder="Update Username (Email)" name="user_email" required>
+                    <input [hidden]="!isEdit" type="email" [(ngModel)]="email" class="modify-phone-input" placeholder="Update Username" name="user_email" required>
                 </h3>
-                <a [hidden]="!isEdit" no-margin class="button button-positive button-full" (click)="updateEmailAddress()">Update Username (Email)</a>
+                <a [hidden]="!isEdit" no-margin class="button button-positive button-full" (click)="updateEmailAddress()">Update Username</a>
                 <a [hidden]="!isEdit" no-margin class="button button-full" (click)="editProfile()">Cancel</a>
             </div>
         </div>

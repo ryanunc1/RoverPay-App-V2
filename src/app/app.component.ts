@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, ActionSheetController, Nav, Events } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -12,6 +13,7 @@ import { RewardHistoryPage } from '../pages/rewardhistory/rewardhistory';
 import { PermissionPage } from '../pages/permission/permission';
 
 import { User } from '../implementation/roverpay.impl';
+import { Socket } from 'ng-socket-io';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,6 +30,8 @@ export class MyApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     private user: User,
+    private geolocation: Geolocation,
+    private socket: Socket,
     private menuCtrl: MenuController,
     private actionSheetCtrl: ActionSheetController,
     public events: Events) {
@@ -53,8 +57,47 @@ export class MyApp {
       } else {
         console.log("Hello HomePage");
         this.rootPage = HomePage;
+        this.setLocation();
+        this.createSocketConnection();
       }
     })
+
+    events.subscribe('setupSocketConnection', () => {
+      this.createSocketConnection();
+    });
+  }
+
+  private createSocketConnection() {
+    this.socket.connect();
+
+
+    let user = this.user.getSocketData();
+
+    console.log("create socket connection");
+    console.log(this.user);
+    console.log(this.user.getSocketData());
+    console.log(user);
+
+    this.socket.emit('customer', JSON.stringify(user));
+  }
+
+  private setLocation() {
+
+    setInterval(() => {
+      this.geolocation.getCurrentPosition()
+          .then((location) => { 
+            console.log("my location"); console.log(location.coords);
+
+            let pos = {
+              "latitude": location.coords.latitude,
+              "longitude": location.coords.longitude
+            }
+            this.socket.emit('checkVenue', pos);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }, 2200);
   }
 
   private setupUserClass(result: any) {
@@ -88,9 +131,11 @@ export class MyApp {
         if(data.code === "OK") {
           this.setupUserClass(data);
           this.user.save();
+          this.createSocketConnection();
         }
       });
       console.log("Go to Home");
+      this.setLocation();
       this.rootPage = HomePage;
       this.menuCtrl.swipeEnable(true);
     } else {

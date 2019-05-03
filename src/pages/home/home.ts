@@ -106,6 +106,7 @@ export class HomePage {
           setTimeout(() => {
             this.isLoading = false;
           }, 500);
+
           this.venues = response.data;
           _.each(this.venues, (venue: any) => {
             if(!venue.campaigns) {
